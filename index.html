@@ -190,13 +190,15 @@
     .cert-list a { color: var(--accent); }
     .cert-list a:hover { text-decoration: underline; }
     .cert-list li > span:last-child { color: var(--text-dim); font-size: .9rem; }
-    .skills-wrap { display: flex; flex-wrap: wrap; gap: 12px; }
-    .skill {
-      background: var(--card); border: 1px solid var(--border);
-      padding: 10px 18px; border-radius: 10px; font-weight: 500; font-size: .95rem;
-      transition: border-color .2s, transform .15s;
+    .skill-list { list-style: none; columns: 2; column-gap: 48px; }
+    .skill-list.one-col { columns: 1; }
+    .skill-list li {
+      color: var(--text-dim); padding-left: 22px; position: relative;
+      margin-bottom: 10px; break-inside: avoid;
     }
-    .skill:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .skill-list li::before { content: "▹"; color: var(--accent); position: absolute; left: 0; }
+    .skill-list li strong { color: var(--text); font-weight: 600; }
+    @media (max-width: 620px) { .skill-list { columns: 1; } }
 
     /* ============================================================
        CONTACTO
@@ -432,41 +434,41 @@
       <p class="section-sub">Tools, strengths and languages I bring to a team.</p>
 
       <h3 class="skills-label">Hard skills</h3>
-      <div class="skills-wrap reveal">
-        <span class="skill">GitHub Copilot</span>
-        <span class="skill">Jira / Confluence</span>
-        <span class="skill">Scrum / Agile</span>
-        <span class="skill">Microsoft 365</span>
-        <span class="skill">AWS QuickSight</span>
-        <span class="skill">SQL</span>
-        <span class="skill">Magento</span>
-        <span class="skill">Python</span>
-        <span class="skill">R</span>
-      </div>
+      <ul class="skill-list reveal">
+        <li>GitHub Copilot</li>
+        <li>Jira / Confluence</li>
+        <li>Scrum / Agile</li>
+        <li>Microsoft 365</li>
+        <li>AWS QuickSight</li>
+        <li>SQL</li>
+        <li>Magento</li>
+        <li>Python</li>
+        <li>R</li>
+      </ul>
 
       <h3 class="skills-label">Soft skills</h3>
-      <div class="skills-wrap reveal">
-        <span class="skill">Communication</span>
-        <span class="skill">Accountable</span>
-        <span class="skill">Team player</span>
-        <span class="skill">Problem-solving mindset</span>
-        <span class="skill">Organized</span>
-      </div>
+      <ul class="skill-list reveal">
+        <li>Communication</li>
+        <li>Accountable</li>
+        <li>Team player</li>
+        <li>Problem-solving mindset</li>
+        <li>Organized</li>
+      </ul>
 
       <h3 class="skills-label">Languages</h3>
-      <div class="skills-wrap reveal">
-        <span class="skill">Spanish — Native</span>
-        <span class="skill">German — C1</span>
-        <span class="skill">English — C1</span>
-        <span class="skill">Russian — B1</span>
-      </div>
+      <ul class="skill-list reveal">
+        <li><strong>Spanish</strong> — Native</li>
+        <li><strong>German</strong> — C1</li>
+        <li><strong>English</strong> — C1</li>
+        <li><strong>Russian</strong> — B1</li>
+      </ul>
 
       <h3 class="skills-label">Interests</h3>
-      <div class="skills-wrap reveal">
-        <span class="skill">📈 Stock market &amp; investing</span>
-        <span class="skill">🏋️ Weightlifting</span>
-        <span class="skill">🍳 Cooking</span>
-      </div>
+      <ul class="skill-list one-col reveal">
+        <li>Stock market &amp; investing</li>
+        <li>Weightlifting</li>
+        <li>Cooking</li>
+      </ul>
     </div>
   </section>
 
