@@ -1,0 +1,167 @@
+<svg viewBox="0 0 1440 1130" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', system-ui, -apple-system, sans-serif">
+  <defs>
+    <marker id="ah" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#64748b"/></marker>
+    <marker id="ab" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#2f6fb0"/></marker>
+    <marker id="ag" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#2e9b57"/></marker>
+    <marker id="ao" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#c67a1e"/></marker>
+    <style>
+      .t   { font-size: 17px; font-weight: 700; fill: #1f2a37; }
+      .b   { font-size: 13.5px; fill: #374151; }
+      .m   { font-size: 12px; font-style: italic; fill: #6b7280; font-family: 'SFMono-Regular', Menlo, monospace; }
+      .h   { font-size: 16px; font-weight: 700; fill: #ffffff; }
+      .hs  { font-size: 12.5px; font-weight: 600; fill: rgba(255,255,255,0.85); }
+      .band{ font-size: 12.5px; font-weight: 700; fill: #8a94a3; letter-spacing: 1.2px; }
+      .dkt { font-size: 16px; font-weight: 700; fill: #e5ecf5; }
+      .dk  { font-size: 13.5px; fill: #b3c1d1; }
+      .dkm { font-size: 13px; fill: #8ba0b6; }
+      .lbl { font-size: 12px; fill: #6b7280; }
+    </style>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="1440" height="1130" rx="16" fill="#f4f6f9"/>
+
+  <!-- header -->
+  <text x="40" y="52" font-size="30" font-weight="800" fill="#1f2a37">CAB OtD Automation — Agent Architecture</text>
+  <text x="40" y="84" font-size="16" fill="#6b7280">Global IT CAB On-time-Delivery agenda: prepare → QA → tag, driven by VS Code Copilot agents + one skill</text>
+  <!-- legend -->
+  <text x="1075" y="52" class="band">LEGEND</text>
+  <rect x="1150" y="42" width="14" height="14" rx="3" fill="#2f6fb0"/><text x="1170" y="54" class="b">prepare</text>
+  <rect x="1240" y="42" width="14" height="14" rx="3" fill="#2e9b57"/><text x="1260" y="54" class="b">qa</text>
+  <rect x="1310" y="42" width="14" height="14" rx="3" fill="#c67a1e"/><text x="1330" y="54" class="b">tag</text>
+
+  <!-- ===== BAND 1 ===== -->
+  <text x="40" y="128" class="band">USER / ORCHESTRATION</text>
+  <line x1="330" y1="123" x2="1400" y2="123" stroke="#dfe4ea"/>
+
+  <!-- Coordinator -->
+  <rect x="40" y="150" width="380" height="150" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <text x="64" y="190" class="t">Coordinator</text>
+  <text x="64" y="216" class="b">Runs the pipeline in VS Code (Copilot agent)</text>
+  <text x="64" y="252" class="b">3 checkpoints: OTP · go/no-go · REVIEW</text>
+
+  <!-- Pipeline (dark) -->
+  <rect x="560" y="150" width="400" height="150" rx="14" fill="#12233a"/>
+  <text x="584" y="188" class="dkt">CAB OtD Pipeline</text>
+  <text x="584" y="214" class="dkm">Orchestrator agent</text>
+  <text x="584" y="246" class="dk">Runs PREPARE → QA → TAG, carries</text>
+  <text x="584" y="270" class="dk">agenda path + session, emits report</text>
+
+  <!-- Agenda -->
+  <rect x="1080" y="150" width="320" height="150" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <text x="1104" y="188" class="t">CAB Agenda .xlsx</text>
+  <text x="1104" y="216" class="b">Input: change numbers</text>
+  <text x="1104" y="242" class="b">Output: cols A, 22–25</text>
+  <text x="1104" y="274" class="b">Consolidated run report</text>
+
+  <!-- row1 arrows -->
+  <line x1="420" y1="225" x2="550" y2="225" stroke="#64748b" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="960" y1="225" x2="1070" y2="225" stroke="#64748b" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="1015" y="216" class="lbl" text-anchor="middle">reads/writes</text>
+
+  <!-- pipeline -> stages (dashed) -->
+  <path d="M760,300 L262,360" stroke="#9aa7b4" stroke-width="1.5" stroke-dasharray="5 5" fill="none" marker-end="url(#ah)"/>
+  <path d="M760,300 L722,360" stroke="#9aa7b4" stroke-width="1.5" stroke-dasharray="5 5" fill="none" marker-end="url(#ah)"/>
+  <path d="M760,300 L1182,360" stroke="#9aa7b4" stroke-width="1.5" stroke-dasharray="5 5" fill="none" marker-end="url(#ah)"/>
+
+  <!-- ===== BAND 2 ===== -->
+  <text x="40" y="343" class="band">AGENTS &amp; SKILL (.github/)</text>
+  <line x1="360" y1="338" x2="1400" y2="338" stroke="#dfe4ea"/>
+
+  <!-- PREPARE -->
+  <rect x="40" y="365" width="430" height="290" rx="14" fill="#2f6fb0"/>
+  <rect x="44" y="409" width="422" height="242" rx="10" fill="#ffffff"/>
+  <text x="62" y="394" class="h">1 · PREPARE</text>
+  <text x="452" y="393" class="hs" text-anchor="end">cab-agenda-otd skill</text>
+  <text x="62" y="443" class="b">• Read agenda rows (changes)</text>
+  <text x="62" y="470" class="b">• Fetch metadata + attachments</text>
+  <text x="62" y="497" class="b">• Select &amp; download app-list</text>
+  <text x="62" y="524" class="b">• Run analyzer → classify</text>
+  <text x="62" y="551" class="b">• Write cols A, 22, 23, 24, 25</text>
+  <text x="62" y="578" class="b">• Auto GSP/ESP awareness tag</text>
+  <text x="62" y="632" class="m">analyze_and_update.py + tests</text>
+
+  <!-- QA -->
+  <rect x="505" y="365" width="430" height="290" rx="14" fill="#2e9b57"/>
+  <rect x="509" y="409" width="422" height="242" rx="10" fill="#ffffff"/>
+  <text x="527" y="394" class="h">2 · QA</text>
+  <text x="917" y="393" class="hs" text-anchor="end">CAB Agenda QA agent</text>
+  <text x="527" y="443" class="b">• Independently re-derive values</text>
+  <text x="527" y="470" class="b">• Diff vs. what was written</text>
+  <text x="527" y="497" class="b">• Cross-domain dependency check</text>
+  <text x="527" y="524" class="b">• Flag OK / MISMATCH / REVIEW</text>
+  <text x="527" y="632" class="m">surfaces only genuine edge cases</text>
+
+  <!-- TAG -->
+  <rect x="970" y="365" width="430" height="290" rx="14" fill="#c67a1e"/>
+  <rect x="974" y="409" width="422" height="242" rx="10" fill="#ffffff"/>
+  <text x="992" y="394" class="h">3 · TAG</text>
+  <text x="1382" y="393" class="hs" text-anchor="end">CAB OtD Tagger agent</text>
+  <text x="992" y="443" class="b">• Find rows = 'added CAB OtD'</text>
+  <text x="992" y="470" class="b">• Resolve sys_ids (itsm-next)</text>
+  <text x="992" y="497" class="b">• Write tag 'Prime_CAB'</text>
+  <text x="992" y="524" class="b">• Idempotent — never double-tags</text>
+  <text x="992" y="551" class="b">• Go/no-go before prod write</text>
+  <text x="992" y="632" class="m">label / label_entry REST</text>
+
+  <!-- stage-to-stage arrows -->
+  <line x1="470" y1="505" x2="502" y2="505" stroke="#2f6fb0" stroke-width="2.5" marker-end="url(#ab)"/>
+  <line x1="935" y1="505" x2="967" y2="505" stroke="#2e9b57" stroke-width="2.5" marker-end="url(#ag)"/>
+
+  <!-- ===== BAND 3 ===== -->
+  <text x="40" y="698" class="band">EXECUTION LOGIC</text>
+  <line x1="230" y1="693" x2="1400" y2="693" stroke="#dfe4ea"/>
+
+  <!-- Robust xlsx reader -->
+  <rect x="40" y="720" width="320" height="210" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <text x="64" y="760" class="t">Robust xlsx reader</text>
+  <text x="64" y="792" class="b">multi-sheet · banner-aware</text>
+  <text x="64" y="818" class="b">ID→name · W→P normalize</text>
+  <text x="64" y="844" class="b">env enrichment · dedupe</text>
+  <text x="64" y="892" class="m">openpyxl</text>
+
+  <!-- Classification rules -->
+  <rect x="386" y="720" width="320" height="210" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <text x="410" y="760" class="t">Classification rules</text>
+  <text x="410" y="792" class="b">dept relevance → col A</text>
+  <text x="410" y="818" class="b">Applications / LRE / Plant</text>
+  <text x="410" y="844" class="b">GSP/ESP awareness</text>
+  <text x="410" y="870" class="b">Cross-domain dependencies</text>
+  <text x="410" y="908" class="m">unit-tested (test_logic.py)</text>
+
+  <!-- app-list-bot -->
+  <rect x="732" y="720" width="320" height="210" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <text x="756" y="760" class="t">app-list-bot</text>
+  <text x="756" y="792" class="b">work folder for downloaded</text>
+  <text x="756" y="818" class="b">attachments</text>
+  <text x="756" y="850" class="b">cleaned up after run</text>
+  <text x="1028" y="900" class="lbl" text-anchor="end">write tag</text>
+
+  <!-- itsm-next MCP -->
+  <rect x="1078" y="720" width="320" height="210" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <text x="1102" y="760" class="t">itsm-next MCP</text>
+  <text x="1102" y="792" class="b">change metadata + sys_id</text>
+  <text x="1102" y="818" class="b">resolution</text>
+  <text x="1102" y="850" class="b">auth: Azure AD + YubiKey</text>
+  <text x="1102" y="876" class="b">OTP (once per run)</text>
+
+  <!-- stage -> execution arrows -->
+  <line x1="200" y1="655" x2="200" y2="716" stroke="#64748b" stroke-width="2" marker-end="url(#ah)"/>
+  <path d="M720,655 L556,716" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M1185,655 L1238,716" stroke="#c67a1e" stroke-width="2" stroke-dasharray="6 5" fill="none" marker-end="url(#ao)"/>
+
+  <!-- ===== BAND 4 ===== -->
+  <text x="40" y="978" class="band">EXTERNAL SYSTEMS</text>
+  <line x1="250" y1="973" x2="1400" y2="973" stroke="#dfe4ea"/>
+
+  <!-- ServiceNow -->
+  <rect x="470" y="1000" width="500" height="100" rx="14" fill="#12233a"/>
+  <text x="500" y="1040" class="dkt">ServiceNow (production)</text>
+  <text x="500" y="1066" class="dkm">Change requests · attachments · tags</text>
+  <text x="500" y="1088" class="dkm">authenticated gsft_main session (window.g_ck)</text>
+
+  <!-- execution -> ServiceNow arrows -->
+  <path d="M850,930 L690,997" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <text x="770" y="972" class="lbl">download</text>
+  <path d="M1200,930 L860,997" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+</svg>

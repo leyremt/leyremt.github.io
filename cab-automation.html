@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAB Briefing Automation — Leyre</title>
+  <meta name="description" content="Case study: agentic automation of the Global IT Change Advisory Board briefing, by Leyre (Product Owner)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0e1116; --bg-soft: #161b22; --card: #1a212b; --border: #2a323d;
+      --text: #e6edf3; --text-dim: #9aa7b4; --accent: #5b8cff; --accent-soft: rgba(91,140,255,0.12);
+      --maxw: 900px;
+    }
+    [data-theme="light"] {
+      --bg: #f7f9fc; --bg-soft: #ffffff; --card: #ffffff; --border: #e4e9f0;
+      --text: #1a2129; --text-dim: #5a6573; --accent: #2f6bff; --accent-soft: rgba(47,107,255,0.10);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+    .back { font-weight: 600; color: var(--text-dim); }
+    .back:hover { color: var(--text); text-decoration: none; }
+    .theme-btn {
+      background: var(--card); border: 1px solid var(--border); color: var(--text);
+      width: 38px; height: 38px; border-radius: 10px; cursor: pointer; font-size: 1.05rem;
+      display: grid; place-items: center;
+    }
+    header.hero { padding: 56px 0 20px; }
+    .eyebrow { color: var(--accent); font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 14px; }
+    header.hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 20px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .tag { font-size: .8rem; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 6px; }
+    .stack {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 18px 22px; font-size: .95rem; color: var(--text-dim); margin-bottom: 8px;
+    }
+    .stack strong { color: var(--text); }
+    figure { margin: 40px 0; }
+    figure img { width: 100%; height: auto; border: 1px solid var(--border); border-radius: 14px; display: block; }
+    figcaption { color: var(--text-dim); font-size: .88rem; text-align: center; margin-top: 12px; }
+    section.block { padding: 30px 0; border-top: 1px solid var(--border); }
+    section.block h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 16px; }
+    section.block h3 { font-size: 1.05rem; font-weight: 700; margin: 20px 0 6px; }
+    section.block p { color: var(--text-dim); margin-bottom: 14px; }
+    section.block ul { list-style: none; margin-bottom: 8px; }
+    section.block li { color: var(--text-dim); padding-left: 22px; position: relative; margin-bottom: 10px; }
+    section.block li::before { content: "▹"; color: var(--accent); position: absolute; left: 0; }
+    section.block strong { color: var(--text); font-weight: 600; }
+    .pipeline-steps { display: grid; gap: 14px; margin: 8px 0 16px; }
+    .step { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; }
+    .step .num { display: inline-block; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+    .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 8px; }
+    .impact-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .impact-card p { margin: 0; }
+    footer { border-top: 1px solid var(--border); padding: 32px 0 48px; text-align: center; color: var(--text-dim); font-size: .9rem; }
+    footer a { font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="index.html#projects" class="back">← Back to portfolio</a>
+      <button class="theme-btn" id="themeBtn" title="Toggle theme">🌙</button>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Professional Project · Product Owner</div>
+      <h1>CAB Briefing Automation</h1>
+      <div class="tags">
+        <span class="tag">AI</span>
+        <span class="tag">GitHub Copilot</span>
+        <span class="tag">Change Advisory Board</span>
+        <span class="tag">Plants</span>
+      </div>
+      <div class="stack">
+        <strong>Stack:</strong> VS Code Copilot agents + skills · Python (openpyxl) · ServiceNow REST ·
+        Model Context Protocol (itsm-next MCP) · YubiKey / Azure AD auth
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <figure>
+      <img src="cab-architecture.svg" alt="CAB OtD Automation — agent architecture: prepare → QA → tag pipeline driven by VS Code Copilot agents, integrating with ServiceNow." />
+      <figcaption>Agent architecture — a single orchestrator runs a Prepare → QA → Tag pipeline with three human checkpoints.</figcaption>
+    </figure>
+
+    <section class="block">
+      <h2>Problem</h2>
+      <p>
+        Every month the Global IT Change Advisory Board must decide which ServiceNow changes are relevant for our
+        department, and record the affected applications, feedback groups and plants across four agenda columns.
+      </p>
+      <p>
+        The task was manual, repetitive and error-prone, with Excel as the main tool: for dozens of changes, a single
+        coordinator opened each record, downloaded an affected-application spreadsheet, interpreted evolving rules and
+        hand-typed four columns. This created transcription errors, inconsistency and severe key-person risk — the
+        classification rules lived in one person's head. On average it required up to <strong>4 hours of manual work each week</strong>.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>Solution</h2>
+      <p>
+        I designed and delivered an <strong>agentic automation</strong> that turns the process into a repeatable,
+        rule-based pipeline with a human only at specific decision points. A single orchestrator agent runs three stages:
+      </p>
+      <div class="pipeline-steps">
+        <div class="step">
+          <span class="num">1 · Prepare</span>
+          <p style="margin:0;">Fetches change metadata and the correct attachment from ServiceNow, parses heterogeneous spreadsheets (multi-sheet, name and plant normalization), applies the codified classification rules, and writes the agenda columns.</p>
+        </div>
+        <div class="step">
+          <span class="num">2 · QA</span>
+          <p style="margin:0;">Independently re-derives every value and diffs it, flagging only true edge cases (OK / MISMATCH / REVIEW), including cross-domain dependency checks.</p>
+        </div>
+        <div class="step">
+          <span class="num">3 · Tag</span>
+          <p style="margin:0;">Tags relevant changes in production ServiceNow after an explicit go/no-go.</p>
+        </div>
+      </div>
+      <p>
+        Human intervention is reduced to <strong>three checkpoints</strong>: one authentication, one go/no-go before the
+        production write, and review of only the specific ambiguous rows.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>My contribution as Product Owner</h2>
+      <ul>
+        <li>Documented and collected tribal knowledge into explicit, unit-tested classification rules (the single source of truth), gathered from the most relevant stakeholders.</li>
+        <li>Defined the <strong>agent architecture</strong> (orchestrator + specialized prepare / QA / tag subagents) and the human-in-the-loop checkpoints.</li>
+        <li>Authored the product backlog — 2 developers, 2 epics, 5 user stories with acceptance criteria, story-point estimates, and a MoSCoW / value-vs-effort prioritization.</li>
+        <li>Embedded <strong>security-by-design</strong>: secrets kept out of version control, least-privilege access, and a mandatory confirmation before any production change.</li>
+      </ul>
+    </section>
+
+    <section class="block">
+      <h2>Impact</h2>
+      <div class="impact-grid">
+        <div class="impact-card"><p><strong>Faster cycle time</strong> and near-elimination of manual transcription errors.</p></div>
+        <div class="impact-card"><p><strong>Consistency &amp; auditability</strong> through rule-driven, independently QA'd output.</p></div>
+        <div class="impact-card"><p><strong>Reduced key-person risk</strong> — the process is now documented, testable and handover-ready.</p></div>
+        <div class="impact-card"><p><strong>A clear roadmap to full autonomy</strong> — non-interactive auth, scheduling, confidence-gated auto-tagging and a self-service UI.</p></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Skills demonstrated</h2>
+      <p>
+        Agentic AI system design · requirements elicitation &amp; rule formalization · human-in-the-loop safety design ·
+        product backlog &amp; prioritization · ServiceNow / ITSM integration · secure automation practices.
+      </p>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <a href="index.html#projects">← Back to all projects</a>
+    </div>
+  </footer>
+
+  <script>
+    const themeBtn = document.getElementById('themeBtn');
+    const root = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { root.setAttribute('data-theme','light'); themeBtn.textContent = '☀️'; }
+    themeBtn.addEventListener('click', () => {
+      const isLight = root.getAttribute('data-theme') === 'light';
+      if (isLight) { root.removeAttribute('data-theme'); themeBtn.textContent = '🌙'; localStorage.setItem('theme','dark'); }
+      else { root.setAttribute('data-theme','light'); themeBtn.textContent = '☀️'; localStorage.setItem('theme','light'); }
+    });
+  </script>
+</body>
+</html>
