@@ -181,6 +181,15 @@
     ============================================================ */
     .skills-label { font-size: 1rem; font-weight: 700; margin: 28px 0 14px; }
     .skills-label:first-of-type { margin-top: 0; }
+    .cert-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .cert-list li {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px;
+      padding: 16px 20px; background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    }
+    .cert-list a, .cert-list .cert-name { font-weight: 700; color: var(--text); }
+    .cert-list a { color: var(--accent); }
+    .cert-list a:hover { text-decoration: underline; }
+    .cert-list li > span:last-child { color: var(--text-dim); font-size: .9rem; }
     .skills-wrap { display: flex; flex-wrap: wrap; gap: 12px; }
     .skill {
       background: var(--card); border: 1px solid var(--border);
@@ -226,7 +235,7 @@
       <nav class="nav-links" id="navLinks">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -327,58 +336,92 @@
             </ul>
           </div>
         </div>
+
+        <div class="job">
+          <div class="job-date">Jan 2019 — Sep 2021<br>Unterhaching</div>
+          <div>
+            <h3>Translation Account Manager</h3>
+            <div class="company">Leinhäuser Language Services GmbH</div>
+            <ul>
+              <li>Managed complex translation projects for blue-chip aviation and tech clients as primary point of contact between enterprise stakeholders and delivery teams, translating client needs into clear scope and on-time delivery.</li>
+              <li>Owned client relationships end-to-end, aligning expectations with business objectives.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-date">Aug 2017 — Nov 2018<br>Tirol</div>
+          <div>
+            <h3>Support Engineer</h3>
+            <div class="company">Swarovski KG</div>
+            <ul>
+              <li>Resolved 1st-level support across Windows, Mac and SAP environments.</li>
+              <li>Managed ticketing, documentation and escalation workflows.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================ PROYECTOS ============================ -->
-  <section id="projects">
+  <!-- ============================ EDUCATION ============================ -->
+  <section id="education">
     <div class="wrap">
-      <h2 class="section-title">Featured projects</h2>
-      <p class="section-sub">A selection of work that shows what I can do.</p>
+      <h2 class="section-title">Education</h2>
+      <p class="section-sub">Academic background across business, AI and languages.</p>
 
-      <div class="projects-grid reveal">
-        <div class="project-card">
-          <div class="project-icon">🚀</div>
-          <h3>Project name</h3>
-          <p>Short description: what problem it solved, your role and the result delivered.</p>
-          <div class="tags">
-            <span class="tag">Agile</span>
-            <span class="tag">Product</span>
-            <span class="tag">Data</span>
-          </div>
-          <div class="project-links">
-            <a href="#">View demo →</a>
-            <a href="#">Read more →</a>
+      <div class="timeline reveal">
+        <div class="job">
+          <div class="job-date">Ongoing</div>
+          <div>
+            <h3>MA Applied AI &amp; Process Optimization <span style="color:var(--text-dim); font-weight:500;">(30 ECTS)</span></h3>
+            <div class="company">UTAMED</div>
           </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-icon">📊</div>
-          <h3>Another project</h3>
-          <p>Short description of the project and its impact.</p>
-          <div class="tags">
-            <span class="tag">AI</span>
-            <span class="tag">Analytics</span>
-          </div>
-          <div class="project-links">
-            <a href="#">Read more →</a>
+        <div class="job">
+          <div class="job-date">2024</div>
+          <div>
+            <h3>BSc Business Administration <span style="color:var(--text-dim); font-weight:500;">(240 ECTS)</span></h3>
+            <div class="company">Open University of Catalonia</div>
+            <ul>
+              <li>Focus on agile methodologies, statistics (Python, R) and Business Intelligence.</li>
+            </ul>
           </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-icon">💡</div>
-          <h3>Third project</h3>
-          <p>Short description. No formal projects? A case study or a personal initiative works too.</p>
-          <div class="tags">
-            <span class="tag">CX</span>
-            <span class="tag">Strategy</span>
+        <div class="job">
+          <div class="job-date">2017</div>
+          <div>
+            <h3>MA Legal Translation <span style="color:var(--text-dim); font-weight:500;">(60 ECTS)</span></h3>
+            <div class="company">University of Alicante</div>
           </div>
-          <div class="project-links">
-            <a href="#">Read more →</a>
+        </div>
+
+        <div class="job">
+          <div class="job-date">2016</div>
+          <div>
+            <h3>BA Translation Studies <span style="color:var(--text-dim); font-weight:500;">(180 ECTS)</span></h3>
+            <div class="company">University of Innsbruck</div>
           </div>
         </div>
       </div>
+
+      <h3 class="skills-label" style="margin-top:48px;">Certifications</h3>
+      <ul class="cert-list reveal">
+        <li>
+          <a href="https://www.credly.com/earner/earned/badge/93124f03-4f0f-40d6-9430-85da8c6c6777" target="_blank">Professional Scrum Master™ I (PSM I) ↗</a>
+          <span>Scrum.org · Feb 2026</span>
+        </li>
+        <li>
+          <a href="https://www.credly.com/earner/earned/badge/eec0eb5f-1207-4634-9c5e-201195fce09e" target="_blank">Professional Scrum Product Owner™ I (PSPO I) ↗</a>
+          <span>Scrum.org · Sep 2023</span>
+        </li>
+        <li>
+          <span class="cert-name">Google Analytics 4 Seminar</span>
+          <span>121WATT School for Digital · Jun 2022</span>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -416,6 +459,13 @@
         <span class="skill">German — C1</span>
         <span class="skill">English — C1</span>
         <span class="skill">Russian — B1</span>
+      </div>
+
+      <h3 class="skills-label">Interests</h3>
+      <div class="skills-wrap reveal">
+        <span class="skill">📈 Stock market &amp; investing</span>
+        <span class="skill">🏋️ Weightlifting</span>
+        <span class="skill">🍳 Cooking</span>
       </div>
     </div>
   </section>
