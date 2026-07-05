@@ -28,18 +28,6 @@
       --maxw: 1040px;
       --shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
-    [data-theme="light"] {
-      --bg: #f7f9fc;
-      --bg-soft: #ffffff;
-      --card: #ffffff;
-      --border: #e4e9f0;
-      --text: #1a2129;
-      --text-dim: #5a6573;
-      --accent: #2f6bff;
-      --accent-soft: rgba(47, 107, 255, 0.10);
-      --shadow: 0 10px 30px rgba(20,30,50,0.08);
-    }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -74,8 +62,7 @@
       display: flex; align-items: center; justify-content: space-between;
       height: 64px;
     }
-    .logo { font-weight: 800; letter-spacing: -0.02em; font-size: 1.1rem; }
-    .logo span { color: var(--accent); }
+    .logo { font-weight: 800; letter-spacing: -0.02em; font-size: 1.1rem; color: var(--accent); }
     .nav-links { display: flex; gap: 28px; align-items: center; }
     .nav-links a { color: var(--text-dim); font-size: .95rem; font-weight: 500; transition: color .2s; }
     .nav-links a:hover { color: var(--text); }
@@ -233,7 +220,7 @@
   <!-- ============================ NAVBAR ============================ -->
   <header class="nav">
     <div class="wrap nav-inner">
-      <a href="#" class="logo">Le<span>yre</span>.</a>
+      <a href="#" class="logo">Leyre.</a>
       <nav class="nav-links" id="navLinks">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
@@ -243,7 +230,6 @@
         <a href="#contact">Contact</a>
       </nav>
       <div style="display:flex; gap:10px; align-items:center;">
-        <button class="theme-btn" id="themeBtn" title="Toggle theme">🌙</button>
         <button class="nav-toggle" id="navToggle">☰</button>
       </div>
     </div>
@@ -252,12 +238,7 @@
   <!-- ============================ HERO ============================ -->
   <section class="hero">
     <div class="wrap">
-      <span class="hero-badge">Open to new opportunities</span>
       <h1>Hello, I'm <span class="accent">Leyre</span>.<br>Agile &amp; Product Specialist.</h1>
-      <p class="lead">
-        Agile specialist with a strong focus on customer experience. I love connecting data and
-        solutions, leveraging AI to increase results — turning insights into strategies that move the needle.
-      </p>
       <div class="cta-row">
         <a href="#projects" class="btn btn-primary">View my work →</a>
         <a href="#contact" class="btn btn-ghost">Get in touch</a>
@@ -295,13 +276,12 @@
   <section id="experience" style="background: var(--bg-soft);">
     <div class="wrap">
       <h2 class="section-title">Experience</h2>
-      <p class="section-sub">My most relevant professional background.</p>
 
       <div class="timeline reveal">
         <div class="job">
           <div class="job-date">Feb 2024 — Present<br>Munich</div>
           <div>
-            <h3>Agile Specialist, IT-Operations</h3>
+            <h3>Agile Operations Specialist, IT-Operations</h3>
             <div class="company">BMW Group</div>
             <ul>
               <li>Built management reporting (process + tooling) to give the SRE teams metric-driven visibility, cutting monthly incident-report compilation from 8h to 1h using AWS tools.</li>
@@ -371,32 +351,44 @@
   <section id="projects">
     <div class="wrap">
       <h2 class="section-title">Featured projects</h2>
-      <p class="section-sub">Selected initiatives where I turned a problem into a measurable result.</p>
 
       <div class="projects-grid reveal">
         <div class="project-card">
-          <div class="project-icon">📊</div>
-          <h3>SRE Management Reporting</h3>
-          <p>Designed the process and tooling to give SRE teams metric-driven visibility, cutting monthly incident-report compilation from 8h to 1h.</p>
+          <div class="project-icon">🤖</div>
+          <h3>CAB Briefing Automation</h3>
+          <p>Agentic for automatic Global Change Advisory Board briefing created with GitHub Copilot.</p>
           <div class="tags">
-            <span class="tag">AWS</span>
-            <span class="tag">Reporting</span>
-            <span class="tag">SRE</span>
+            <span class="tag">GitHub Copilot</span>
+            <span class="tag">ServiceNow</span>
+            <span class="tag">Agentic AI system</span>
+            <span class="tag">Professional project</span>
+          </div>
+          <div class="project-links">
+            <a href="cab-automation.html">Read case study →</a>
           </div>
         </div>
 
         <div class="project-card">
-          <div class="project-icon">🤖</div>
-          <h3>CAB Briefing Automation</h3>
-          <p>Designed and owned an agentic Prepare → QA → Tag pipeline that automates the Global IT Change Advisory Board briefing, removing up to 4h/week of manual work with a human only at key checkpoints.</p>
+          <div class="project-icon">📊</div>
+          <h3>SRE Management Reporting</h3>
+          <p>Daily refreshed dashboard for SRE metrics in the IT plant departments.</p>
           <div class="tags">
-            <span class="tag">AI</span>
-            <span class="tag">GitHub Copilot</span>
-            <span class="tag">Change Advisory Board</span>
-            <span class="tag">Plants</span>
+            <span class="tag">AWS</span>
+            <span class="tag">Reporting</span>
+            <span class="tag">SRE</span>
+            <span class="tag">SQL</span>
           </div>
-          <div class="project-links">
-            <a href="cab-automation.html">Read case study →</a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">📈</div>
+          <h3>Solo Inversiones</h3>
+          <p>An LLM-powered market-intelligence pipeline that turns unstructured chat into a live equities watchlist — ticker extraction, market-data and news enrichment, and a self-deploying dashboard.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Anthropic API</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Netlify</span>
           </div>
         </div>
 
@@ -418,7 +410,6 @@
   <section id="education" style="background: var(--bg-soft);">
     <div class="wrap">
       <h2 class="section-title">Education</h2>
-      <p class="section-sub">Academic background across business, AI and languages.</p>
 
       <div class="timeline reveal">
         <div class="job">
@@ -479,7 +470,6 @@
   <section id="skills">
     <div class="wrap">
       <h2 class="section-title">Skills</h2>
-      <p class="section-sub">Tools, strengths and languages I bring to a team.</p>
 
       <h3 class="skills-label">Hard skills</h3>
       <ul class="skill-list reveal">
@@ -497,6 +487,7 @@
       <h3 class="skills-label">Soft skills</h3>
       <ul class="skill-list reveal">
         <li>Communication</li>
+        <li>Relationship building</li>
         <li>Accountable</li>
         <li>Team player</li>
         <li>Problem-solving mindset</li>
@@ -541,17 +532,6 @@
   </footer>
 
   <script>
-    /* ===== Tema claro/oscuro ===== */
-    const themeBtn = document.getElementById('themeBtn');
-    const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light') { root.setAttribute('data-theme', 'light'); themeBtn.textContent = '☀️'; }
-    themeBtn.addEventListener('click', () => {
-      const isLight = root.getAttribute('data-theme') === 'light';
-      if (isLight) { root.removeAttribute('data-theme'); themeBtn.textContent = '🌙'; localStorage.setItem('theme', 'dark'); }
-      else { root.setAttribute('data-theme', 'light'); themeBtn.textContent = '☀️'; localStorage.setItem('theme', 'light'); }
-    });
-
     /* ===== Menú móvil ===== */
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');

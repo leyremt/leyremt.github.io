@@ -14,10 +14,6 @@
       --text: #e6edf3; --text-dim: #9aa7b4; --accent: #5b8cff; --accent-soft: rgba(91,140,255,0.12);
       --maxw: 900px;
     }
-    [data-theme="light"] {
-      --bg: #f7f9fc; --bg-soft: #ffffff; --card: #ffffff; --border: #e4e9f0;
-      --text: #1a2129; --text-dim: #5a6573; --accent: #2f6bff; --accent-soft: rgba(47,107,255,0.10);
-    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -76,7 +72,6 @@
   <div class="topbar">
     <div class="wrap topbar-inner">
       <a href="index.html#projects" class="back">← Back to portfolio</a>
-      <button class="theme-btn" id="themeBtn" title="Toggle theme">🌙</button>
     </div>
   </div>
 
@@ -178,15 +173,5 @@
     </div>
   </footer>
 
-  <script>
-    const themeBtn = document.getElementById('themeBtn');
-    const root = document.documentElement;
-    if (localStorage.getItem('theme') === 'light') { root.setAttribute('data-theme','light'); themeBtn.textContent = '☀️'; }
-    themeBtn.addEventListener('click', () => {
-      const isLight = root.getAttribute('data-theme') === 'light';
-      if (isLight) { root.removeAttribute('data-theme'); themeBtn.textContent = '🌙'; localStorage.setItem('theme','dark'); }
-      else { root.setAttribute('data-theme','light'); themeBtn.textContent = '☀️'; localStorage.setItem('theme','light'); }
-    });
-  </script>
 </body>
 </html>
