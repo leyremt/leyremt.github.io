@@ -87,6 +87,7 @@
       <div class="tags">
         <span class="tag">AI</span>
         <span class="tag">GitHub Copilot</span>
+        <span class="tag">Visual Studio</span>
         <span class="tag">Change Advisory Board</span>
         <span class="tag">Plants</span>
       </div>
@@ -118,6 +119,14 @@
         The goal was to reduce the human and time intervention without losing the <strong>"human in the loop"</strong>
         concept. The agent should also be usable locally by other colleagues through GitHub Copilot in Visual Studio.
       </p>
+    </section>
+
+    <section class="block">
+      <h2>Users and stakeholders</h2>
+      <ul>
+        <li><strong>Briefing author</strong> — the primary user of the CAB briefing automation, and the person who spends the most time preparing the agenda.</li>
+        <li><strong>CAB members</strong> — the agenda consumers, including department members and plant members. These groups deliver feedback and accept or reject the changes.</li>
+      </ul>
     </section>
 
     <section class="block">
@@ -170,6 +179,20 @@
         <div class="impact-card"><p><strong>Key-person risk eliminated</strong>: the briefing can be prepared by anyone with minimal knowledge in the team, instead of one person holding undocumented rules.</p></div>
         <div class="impact-card"><p><strong>A clear roadmap to full autonomy</strong>: non-interactive auth, scheduling, confidence-gated auto-tagging, a user-friendly front-end UI, usable for other domains, and adaptability to the CAB plants.</p></div>
       </div>
+    </section>
+
+    <section class="block">
+      <h2>Learnings</h2>
+      <p>
+        The hardest part wasn't building the agents, but extracting and understanding the rules that lived in one
+        person's head and were never written down. I had to reach out to different members of the Change Advisory Board
+        to understand their needs. I discovered that the input variance across plants, applications and infrastructure
+        was larger than expected, and a lot of testing time was needed to teach the agent.
+      </p>
+      <p>
+        In hindsight, I should have defined and recorded metrics before and after testing, so I could measure how the
+        product improved over time as the learnings were implemented.
+      </p>
     </section>
 
     <section class="block">
