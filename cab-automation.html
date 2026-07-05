@@ -82,12 +82,12 @@
       <h1>CAB Briefing Automation</h1>
       <p class="lede">
         Agentic system that turns raw ServiceNow change records into a ready Change Advisory Board agenda.
-        Cut weekly prep from aprox. 4 hrs to 20 min while keeping a human approver in the loop. Acted as Product Owner.
+        Cut weekly prep from approx. 4 hrs to 20 min while keeping a human approver in the loop. Acted as Product Owner.
       </p>
       <div class="tags">
         <span class="tag">AI</span>
         <span class="tag">GitHub Copilot</span>
-        <span class="tag">Visual Studio</span>
+        <span class="tag">VS Copilot</span>
         <span class="tag">Change Advisory Board</span>
         <span class="tag">Plants</span>
       </div>
@@ -102,8 +102,8 @@
     <section class="block" style="border-top:none; padding-top:8px;">
       <h2>Problem and goal</h2>
       <p>
-        Every month, the Global IT Change Advisory Board must decide which changes in ServiceNow are relevant for our
-        department (IT for the plants), and record the affected applications, feedback groups and plants across.
+        Every week, the Global IT Change Advisory Board must decide which changes in ServiceNow are relevant for our
+        department (IT for the plants), and record the affected applications across the affected plants.
         This file is called the <strong>CAB Agenda</strong>.
       </p>
       <p>
@@ -117,7 +117,7 @@
       </p>
       <p>
         The goal was to reduce the human and time intervention without losing the <strong>"human in the loop"</strong>
-        concept. The agent should also be usable locally by other colleagues through GitHub Copilot in Visual Studio.
+        concept. The agent should also be usable locally by other colleagues through VS Copilot.
       </p>
     </section>
 
@@ -165,7 +165,7 @@
         <li>Documented and collected tribal knowledge into explicit, unit-tested classification rules (the single source of truth), gathered from the most relevant stakeholders.</li>
         <li>Defined the <strong>agent architecture</strong> (orchestrator + specialized prepare / QA / tag subagents) and the human-in-the-loop checkpoints.</li>
         <li>Managed the product backlog with 2 developers, 2 epics, 5 user stories each with acceptance criteria, and a MoSCoW / value-vs-effort prioritization.</li>
-        <li><strong>Defined metrics for product success:</strong>
+        <li><strong>Defined metrics for product success to implement the agent and start working with it:</strong>
           <ul style="margin-top:8px;">
             <li>More than 80% time saving (currently 90% time saving).</li>
             <li>More than 80% correct results given back.</li>
@@ -180,8 +180,8 @@
     <section class="block">
       <h2>Impact</h2>
       <div class="impact-grid">
-        <div class="impact-card"><p><strong>Faster cycle time</strong>: CAB briefing preparation went down from aprox. 4h/week to aprox. 20 min/week. This translates into almost one working month per year.</p></div>
-        <div class="impact-card"><p><strong>Higher throughput</strong>: on average, aprox. 30 change records processed per week, with 95% reaching the agenda without manual correction. This showed consistency and auditability.</p></div>
+        <div class="impact-card"><p><strong>Faster cycle time</strong>: CAB briefing preparation went down from approx. 4h/week to approx. 20 min/week. This translates into almost one working month per year.</p></div>
+        <div class="impact-card"><p><strong>Higher throughput</strong>: on average, approx. 30 change records processed per week, with 95% correct results given back. This showed consistency and auditability.</p></div>
         <div class="impact-card"><p><strong>Key-person risk eliminated</strong>: the briefing can be prepared by anyone with minimal knowledge in the team, instead of one person holding undocumented rules.</p></div>
         <div class="impact-card"><p><strong>A clear roadmap to full autonomy</strong>: non-interactive auth, scheduling, confidence-gated auto-tagging, a user-friendly front-end UI, usable for other domains, and adaptability to the CAB plants.</p></div>
       </div>

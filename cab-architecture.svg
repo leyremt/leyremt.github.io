@@ -22,7 +22,7 @@
   <rect x="0" y="0" width="1440" height="1130" rx="16" fill="#f4f6f9"/>
 
   <!-- header -->
-  <text x="40" y="52" font-size="30" font-weight="800" fill="#1f2a37">CAB OtD Automation — Agent Architecture</text>
+  <text x="40" y="52" font-size="30" font-weight="800" fill="#1f2a37">CAB Automation — Agent Architecture</text>
   <text x="40" y="84" font-size="16" fill="#6b7280">Global IT CAB On-time-Delivery agenda: prepare → QA → tag, driven by VS Code Copilot agents + one skill</text>
   <!-- legend -->
   <text x="1075" y="52" class="band">LEGEND</text>
@@ -42,7 +42,7 @@
 
   <!-- Pipeline (dark) -->
   <rect x="560" y="150" width="400" height="150" rx="14" fill="#12233a"/>
-  <text x="584" y="188" class="dkt">CAB OtD Pipeline</text>
+  <text x="584" y="188" class="dkt">CAB Pipeline</text>
   <text x="584" y="214" class="dkm">Orchestrator agent</text>
   <text x="584" y="246" class="dk">Runs PREPARE → QA → TAG, carries</text>
   <text x="584" y="270" class="dk">agenda path + session, emits report</text>
@@ -96,8 +96,8 @@
   <rect x="970" y="365" width="430" height="290" rx="14" fill="#c67a1e"/>
   <rect x="974" y="409" width="422" height="242" rx="10" fill="#ffffff"/>
   <text x="992" y="394" class="h">3 · TAG</text>
-  <text x="1382" y="393" class="hs" text-anchor="end">CAB OtD Tagger agent</text>
-  <text x="992" y="443" class="b">• Find rows = 'added CAB OtD'</text>
+  <text x="1382" y="393" class="hs" text-anchor="end">CAB Tagger agent</text>
+  <text x="992" y="443" class="b">• Find rows = 'added CAB'</text>
   <text x="992" y="470" class="b">• Resolve sys_ids (itsm-next)</text>
   <text x="992" y="497" class="b">• Write tag 'Prime_CAB'</text>
   <text x="992" y="524" class="b">• Idempotent — never double-tags</text>
