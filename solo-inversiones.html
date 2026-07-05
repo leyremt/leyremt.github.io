@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solo Inversiones — Leyre</title>
+  <meta name="description" content="Case study: Solo Inversiones — an LLM bot that turns group-chat stock talk into a self-pricing, self-deploying watchlist. By Leyre." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0e1116; --bg-soft: #161b22; --card: #1a212b; --border: #2a323d;
+      --text: #e6edf3; --text-dim: #9aa7b4; --accent: #5b8cff; --accent-soft: rgba(91,140,255,0.12);
+      --maxw: 900px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+    .back { font-weight: 600; color: var(--text-dim); }
+    .back:hover { color: var(--text); text-decoration: none; }
+    header.hero { padding: 56px 0 20px; }
+    .eyebrow { color: var(--accent); font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 14px; }
+    header.hero h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 14px; }
+    .dek { font-size: 1.3rem; line-height: 1.5; color: var(--text-dim); max-width: 620px; margin-bottom: 24px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .tag { font-size: .8rem; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 6px; }
+    .stack {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 18px 22px; font-size: .95rem; color: var(--text-dim);
+    }
+    .stack strong { color: var(--text); }
+    section.block { padding: 30px 0; border-top: 1px solid var(--border); }
+    section.block h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 16px; }
+    section.block h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+    section.block p { color: var(--text-dim); margin-bottom: 14px; }
+    section.block p:last-child { margin-bottom: 0; }
+    section.block strong { color: var(--text); font-weight: 600; }
+    em { color: var(--accent); font-style: italic; }
+
+    /* chat → ticker resolve box */
+    .resolve {
+      display: flex; align-items: center; gap: 22px; flex-wrap: wrap;
+      margin: 8px 0 18px; padding: 22px 24px;
+      background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 8px;
+    }
+    .resolve .col { flex: 1 1 220px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+    .resolve .frag { font-style: italic; color: var(--text-dim); }
+    .resolve .arrow { color: var(--accent); font-weight: 700; font-size: 1.5rem; flex: 0 0 auto; }
+    .resolve .chip {
+      align-self: flex-start; font-family: 'SFMono-Regular', Menlo, monospace; font-size: .9rem; font-weight: 600;
+      color: var(--accent); background: var(--card); border: 1px solid var(--border); padding: 6px 11px; border-radius: 6px;
+    }
+
+    /* decisions grid */
+    .decision {
+      display: grid; grid-template-columns: 150px 1fr; gap: 12px 28px;
+      padding: 18px 0; border-top: 1px solid var(--border); align-items: start;
+    }
+    .decision:last-child { border-bottom: 1px solid var(--border); }
+    .decision .dtag { color: var(--accent); font-weight: 700; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; padding-top: 3px; }
+    .decision p { margin: 0; }
+
+    /* outcomes list */
+    dl.outcomes { margin: 4px 0; }
+    .outcome {
+      display: grid; grid-template-columns: 210px 1fr; gap: 6px 28px;
+      padding: 16px 0; border-top: 1px solid var(--border); align-items: baseline;
+    }
+    .outcome:last-child { border-bottom: 1px solid var(--border); }
+    .outcome dt { color: var(--text); font-weight: 700; }
+    .outcome dd { margin: 0; color: var(--text-dim); }
+
+    .skills-line { font-size: .95rem; color: var(--text-dim); margin-top: 6px; }
+    .skills-line span { color: var(--accent); }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 0 48px; color: var(--text-dim); font-size: .95rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+    footer a { font-weight: 600; }
+
+    @media (max-width: 620px) {
+      .decision, .outcome { grid-template-columns: 1fr; gap: 4px; }
+      .decision .dtag { padding-top: 0; }
+      .resolve { flex-direction: column; align-items: stretch; }
+      .resolve .arrow { transform: rotate(90deg); align-self: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="index.html#projects" class="back">← Back to portfolio</a>
+      <a href="https://github.com/leyremt/solo-inversiones" target="_blank" rel="noopener">View the code ↗</a>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Personal Project</div>
+      <h1>Solo Inversiones</h1>
+      <p class="dek">It reads our group chat and turns the stock talk into a list that prices itself and stays current.</p>
+      <div class="tags">
+        <span class="tag">LLM extraction</span>
+        <span class="tag">Claude Haiku</span>
+        <span class="tag">Serverless</span>
+        <span class="tag">Automation</span>
+        <span class="tag">Personal project</span>
+      </div>
+      <div class="stack">
+        <strong>Stack:</strong> Python · Anthropic API (Claude Haiku) · GitHub Actions (scheduled) · Yahoo Finance API · Netlify (static hosting)
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="block" style="border-top:none; padding-top:8px;">
+      <h2>Overview</h2>
+      <p>
+        Every day it reads our investing chat and uses an LLM to pull out every company someone mentioned — the ticker,
+        the market, the theme, and why it came up. Then it attaches a fresh price to each and pushes the whole thing to a
+        static site that redeploys itself. Nothing to run, nothing to maintain — the bill comes to a few cents a month.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>The problem</h2>
+      <p>
+        The chat was never only about markets. A good stock idea sat in the same thread as football, memes and whatever
+        we were doing that weekend, and within a day it had scrolled out of sight. A week later someone would ask why
+        we'd even looked at a name, and nobody could remember. Everything we needed was buried in the history — it just
+        wasn't searchable, and the reasoning behind each name was gone.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>The idea</h2>
+      <p>
+        Asking people to log tickers by hand was never going to work. Nobody does that in a group chat, and I wasn't
+        going to either. So the bot does the remembering instead. It catches every mention and keeps the reason attached,
+        then shows the lot on a dashboard that stays current by itself and costs nothing to run.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>How it works</h2>
+      <p>
+        A bot picks up new messages from the group and passes them to an LLM (<strong>Claude Haiku</strong>), which pulls
+        out the companies and structures each one: ticker, exchange, theme, and a line on why it came up. A daily job then
+        adds the latest price and change to every company and writes the result to a static page that publishes itself.
+        Scheduled runs and free hosting handle the rest — there's nothing to keep alive.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>The hard part</h2>
+      <h3>Reading how people actually type</h3>
+      <p>
+        Real chat is messy on purpose. Someone writes <em>Timofónica</em> when they mean Telefónica, or <em>Ibertrola</em>
+        for Iberdrola. Half of it is in-jokes, and the model still has to see through it.
+      </p>
+      <div class="resolve" role="img" aria-label="Chat wordplay resolving to real tickers: Timofonica becomes TEF Telefonica, Ibertrola becomes IBE Iberdrola.">
+        <div class="col">
+          <span class="frag">"alguien sigue timofónica?"</span>
+          <span class="frag">"ibertrola está regalada"</span>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="col">
+          <span class="chip">TEF · Telefónica</span>
+          <span class="chip">IBE · Iberdrola</span>
+        </div>
+      </div>
+      <p>
+        At temperature 0, fully deterministic, it read too literally — it couldn't get from the joke to the actual
+        company. Nudging the temperature up a little gave it enough slack to make that jump and land on the right ticker,
+        but not so much that it started inventing names nobody had said. I found that line by trying to break it, not by
+        guessing.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>Decisions &amp; trade-offs</h2>
+      <div class="decision">
+        <div class="dtag">Cost &amp; upkeep</div>
+        <p>Serverless, running on scheduled jobs and free static hosting. The cost of that is a once-a-day refresh instead of real time, which I was happy to pay — this is meant to remember what we discussed, not to trade the open, so daily is plenty. In return the bill stays at cents and there's nothing to maintain.</p>
+      </div>
+      <div class="decision">
+        <div class="dtag">Extraction</div>
+        <p>Tuned the model for messy human input rather than clean tickers — that was the temperature call above. The interesting decisions in an LLM product usually aren't in the prompt; they're in how you deal with the inputs you don't control.</p>
+      </div>
+      <div class="decision">
+        <div class="dtag">Privacy</div>
+        <p>Attribution is anonymized on purpose. The site says the group mentioned a company — it never says who. My friends' names don't leave the chat, and that was a rule from day one, not something I patched in later.</p>
+      </div>
+      <div class="decision">
+        <div class="dtag">Simplicity</div>
+        <p>No framework, no dependencies, a plain static frontend. Fewer moving parts, fewer things that can break while I'm not looking. For something meant to run untouched for months, that mattered more than any feature.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>What it delivers</h2>
+      <dl class="outcomes">
+        <div class="outcome"><dt>Runs itself</dt><dd>Reads, extracts, prices, republishes — every day, without me.</dd></div>
+        <div class="outcome"><dt>Near-zero cost</dt><dd>A few cents a month, all in.</dd></div>
+        <div class="outcome"><dt>Structure from noise</dt><dd>Turns loose chat into structured data you can query: ticker, market, theme, context.</dd></div>
+        <div class="outcome"><dt>Name to signal</dt><dd>Go from a name in the chat to its price and what's moving it, in one step.</dd></div>
+        <div class="outcome"><dt>Survives real chat</dt><dd>Holds up against the typos and wordplay a real group throws at it.</dd></div>
+      </dl>
+    </section>
+
+    <section class="block">
+      <h2>What's next</h2>
+      <p>
+        Making each mention say more: sentiment (bullish or bearish), price targets when someone states one, and a record
+        of how often — and how — a name keeps coming up. Less of a ticker list, more of a small research feed with a point
+        of view.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>Why it matters</h2>
+      <p>
+        Small project, built on my own from end to end — but it's a fair picture of how I work: find what actually annoys
+        people, build the smallest thing that fixes it, and be honest about what you're trading away to get there. The
+        parts that are genuinely hard, I'd rather settle by testing than by assuming I'm right.
+      </p>
+      <p class="skills-line">
+        Product scoping <span>·</span> Decisions from evidence <span>·</span> LLM integration <span>·</span> Automation <span>·</span> End-to-end delivery
+      </p>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <a href="index.html#projects">← Back to all projects</a>
+      <a href="https://github.com/leyremt/solo-inversiones" target="_blank" rel="noopener">View the code — github.com/leyremt/solo-inversiones ↗</a>
+    </div>
+  </footer>
+</body>
+</html>
