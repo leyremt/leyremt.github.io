@@ -130,7 +130,7 @@
         <span class="tag">Personal project</span>
       </div>
       <div class="stack">
-        <strong>Stack:</strong> Python · Anthropic API (Claude Haiku) · GitHub Actions (scheduled) · Yahoo Finance API · Netlify (static hosting)
+        <strong>Stack:</strong> Python · Anthropic API (Claude Haiku) · GitHub Actions (scheduled) · Yahoo Finance API
       </div>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://leyremt.github.io/solo-inversiones/" target="_blank" rel="noopener">Open the live tool ↗</a>
@@ -141,30 +141,31 @@
 
   <div class="wrap">
     <section class="block" style="border-top:none; padding-top:8px;">
-      <h2>Overview</h2>
       <p>
-        Every day it reads our investing chat and uses an LLM to pull out every company someone mentioned — the ticker,
-        the market, the theme, and why it came up. Then it attaches a fresh price to each and pushes the whole thing to a
-        static site that redeploys itself. Nothing to run, nothing to maintain — the bill comes to a few cents a month.
+        This bot reads our investing chat in Telegram every day and uses an LLM to pull out every company someone
+        mentioned: the ticker, the market, the theme, and why it came up. Then it attaches a fresh price to each and
+        pushes the whole thing to a static site that redeploys itself. Nothing to run, nothing to maintain, just a bill
+        that comes to a few cents a month.
       </p>
     </section>
 
     <section class="block">
-      <h2>The problem</h2>
+      <h2>Problem</h2>
       <p>
-        The chat was never only about markets. A good stock idea sat in the same thread as football, memes and whatever
-        we were doing that weekend, and within a day it had scrolled out of sight. A week later someone would ask why
-        we'd even looked at a name, and nobody could remember. Everything we needed was buried in the history — it just
-        wasn't searchable, and the reasoning behind each name was gone.
+        The chat was never only about markets. A good stock idea sat in the same thread as memes and whatever we were
+        doing that moment, and within a day it had scrolled out of sight. A week later, if someone asked why we had even
+        looked at a name, nobody could remember why we spoke about it. Everything we needed was buried in the chat among
+        memes, and it was not searchable anymore.
       </p>
+      <p>So we definitely needed a tool to collect and track this information.</p>
     </section>
 
     <section class="block">
       <h2>The idea</h2>
       <p>
-        Asking people to log tickers by hand was never going to work. Nobody does that in a group chat, and I wasn't
-        going to either. So the bot does the remembering instead. It catches every mention and keeps the reason attached,
-        then shows the lot on a dashboard that stays current by itself and costs nothing to run.
+        Keeping track of the tickers manually was never going to work. So we moved from WhatsApp to Telegram to be able
+        to use a bot and automate the ticker tracking. The bot catches every mention and keeps the reason attached, then
+        shows the lot on a dashboard that stays current by itself and costs nothing to run.
       </p>
     </section>
 
@@ -174,7 +175,7 @@
         A bot picks up new messages from the group and passes them to an LLM (<strong>Claude Haiku</strong>), which pulls
         out the companies and structures each one: ticker, exchange, theme, and a line on why it came up. A daily job then
         adds the latest price and change to every company and writes the result to a static page that publishes itself.
-        Scheduled runs and free hosting handle the rest — there's nothing to keep alive.
+        Scheduled runs and free hosting handle the rest.
       </p>
     </section>
 
@@ -197,10 +198,9 @@
         </div>
       </div>
       <p>
-        At temperature 0, fully deterministic, it read too literally — it couldn't get from the joke to the actual
-        company. Nudging the temperature up a little gave it enough slack to make that jump and land on the right ticker,
-        but not so much that it started inventing names nobody had said. I found that line by trying to break it, not by
-        guessing.
+        At temperature 0, fully deterministic, it read too literally and could not get from the joke to the actual
+        company. Increasing the temperature a little gave it enough slack to land on the right ticker, but not so much
+        that it started inventing names nobody had said. I found that line by trying to break it, not by guessing.
       </p>
     </section>
 
@@ -208,48 +208,47 @@
       <h2>Decisions &amp; trade-offs</h2>
       <div class="decision">
         <div class="dtag">Cost &amp; upkeep</div>
-        <p>Serverless, running on scheduled jobs and free static hosting. The cost of that is a once-a-day refresh instead of real time, which I was happy to pay — this is meant to remember what we discussed, not to trade the open, so daily is plenty. In return the bill stays at cents and there's nothing to maintain.</p>
+        <p>Serverless, running on scheduled jobs and free static hosting. The cost of that is a once-a-day refresh instead of real time, which I was happy to pay. This is meant to remember what we discussed, not to trade the open, so daily is plenty. In return the bill stays at cents and there is nothing to maintain.</p>
       </div>
       <div class="decision">
         <div class="dtag">Extraction</div>
-        <p>Tuned the model for messy human input rather than clean tickers — that was the temperature call above. The interesting decisions in an LLM product usually aren't in the prompt; they're in how you deal with the inputs you don't control.</p>
+        <p>Tuned the model for messy human input rather than clean tickers (that was the temperature call above). The interesting decisions in an LLM product usually are not in the prompt; they are in how you deal with the inputs you do not control.</p>
       </div>
       <div class="decision">
         <div class="dtag">Privacy</div>
-        <p>Attribution is anonymized on purpose. The site says the group mentioned a company — it never says who. My friends' names don't leave the chat, and that was a rule from day one, not something I patched in later.</p>
+        <p>Attribution is anonymized on purpose. The site says the group mentioned a company, and it never says who. The names of my friends do not leave the chat, and that was a rule from day one, not something I patched in later.</p>
       </div>
       <div class="decision">
         <div class="dtag">Simplicity</div>
-        <p>No framework, no dependencies, a plain static frontend. Fewer moving parts, fewer things that can break while I'm not looking. For something meant to run untouched for months, that mattered more than any feature.</p>
+        <p>No framework, no dependencies, a plain static frontend. Fewer moving parts, fewer things that can break while I am not looking. For something meant to run untouched for months, that mattered more than any feature.</p>
       </div>
     </section>
 
     <section class="block">
       <h2>What it delivers</h2>
       <dl class="outcomes">
-        <div class="outcome"><dt>Runs itself</dt><dd>Reads, extracts, prices, republishes — every day, without me.</dd></div>
+        <div class="outcome"><dt>Runs itself</dt><dd>Reads, extracts, prices and republishes every day, by itself.</dd></div>
         <div class="outcome"><dt>Near-zero cost</dt><dd>A few cents a month, all in.</dd></div>
         <div class="outcome"><dt>Structure from noise</dt><dd>Turns loose chat into structured data you can query: ticker, market, theme, context.</dd></div>
-        <div class="outcome"><dt>Name to signal</dt><dd>Go from a name in the chat to its price and what's moving it, in one step.</dd></div>
+        <div class="outcome"><dt>Name to signal</dt><dd>Go from a name in the chat to its price and what is moving it, in one step.</dd></div>
         <div class="outcome"><dt>Survives real chat</dt><dd>Holds up against the typos and wordplay a real group throws at it.</dd></div>
       </dl>
     </section>
 
     <section class="block">
-      <h2>What's next</h2>
+      <h2>What is next</h2>
       <p>
         Making each mention say more: sentiment (bullish or bearish), price targets when someone states one, and a record
-        of how often — and how — a name keeps coming up. Less of a ticker list, more of a small research feed with a point
-        of view.
+        of how often a name keeps coming up. Less of a ticker list, more of a small research feed with a point of view.
       </p>
     </section>
 
     <section class="block">
       <h2>Why it matters</h2>
       <p>
-        Small project, built on my own from end to end — but it's a fair picture of how I work: find what actually annoys
-        people, build the smallest thing that fixes it, and be honest about what you're trading away to get there. The
-        parts that are genuinely hard, I'd rather settle by testing than by assuming I'm right.
+        Small project, built on my own from end to end — but it is a fair picture of how I work: find what actually
+        annoys people, build the smallest thing that fixes it, and be honest about what you are trading away to get there.
+        The parts that are genuinely hard, I would rather settle by testing than by assuming I am right.
       </p>
       <p class="skills-line">
         Product scoping <span>·</span> Decisions from evidence <span>·</span> LLM integration <span>·</span> Automation <span>·</span> End-to-end delivery
