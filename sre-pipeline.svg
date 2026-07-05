@@ -1,0 +1,67 @@
+<svg viewBox="0 0 1240 350" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', system-ui, -apple-system, sans-serif">
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#64748b"/></marker>
+    <style>
+      .t   { font-size: 15px; font-weight: 700; fill: #1f2a37; }
+      .s   { font-size: 12px; font-style: italic; fill: #6b7280; }
+      .b   { font-size: 12.5px; fill: #374151; }
+      .n   { font-size: 14px; font-weight: 700; fill: #ffffff; }
+      .cap { font-size: 22px; font-weight: 800; fill: #1f2a37; }
+      .dt  { font-size: 15px; font-weight: 700; fill: #e5ecf5; }
+      .ds  { font-size: 12px; font-style: italic; fill: #8ba0b6; }
+      .db  { font-size: 12.5px; fill: #b3c1d1; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1240" height="350" rx="16" fill="#f4f6f9"/>
+  <text x="24" y="46" class="cap">Daily-refreshed analytics pipeline</text>
+
+  <!-- Box 1: ServiceNow -->
+  <rect x="20" y="78" width="214" height="240" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <circle cx="50" cy="110" r="15" fill="#64748b"/><text x="50" y="115" class="n" text-anchor="middle">1</text>
+  <text x="76" y="115" class="t">ServiceNow</text>
+  <text x="24" y="150" class="s">Source system</text>
+  <text x="24" y="182" class="b">Incident data +</text>
+  <text x="24" y="204" class="b">Business Impact Reports</text>
+
+  <!-- Box 2: Cloud Data Hub -->
+  <rect x="264" y="78" width="214" height="240" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <circle cx="294" cy="110" r="15" fill="#2f6fb0"/><text x="294" y="115" class="n" text-anchor="middle">2</text>
+  <text x="320" y="115" class="t">Cloud Data Hub</text>
+  <text x="268" y="150" class="s">Central data lake</text>
+  <text x="268" y="182" class="b">Daily feed of</text>
+  <text x="268" y="204" class="b">source tables</text>
+
+  <!-- Box 3: Athena -->
+  <rect x="508" y="78" width="214" height="240" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <circle cx="538" cy="110" r="15" fill="#c67a1e"/><text x="538" y="115" class="n" text-anchor="middle">3</text>
+  <text x="564" y="115" class="t">AWS Athena</text>
+  <text x="512" y="150" class="s">SQL transformation</text>
+  <text x="512" y="182" class="b">Join 4 tables</text>
+  <text x="512" y="204" class="b">Clean &amp; normalize</text>
+  <text x="512" y="226" class="b">(SQL)</text>
+
+  <!-- Box 4: QuickSight -->
+  <rect x="752" y="78" width="214" height="240" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <circle cx="782" cy="110" r="15" fill="#2e9b57"/><text x="782" y="115" class="n" text-anchor="middle">4</text>
+  <text x="808" y="115" class="t">AWS QuickSight</text>
+  <text x="756" y="150" class="s">Self-service dashboards</text>
+  <text x="756" y="182" class="b">Role-based access</text>
+  <text x="756" y="204" class="b">Per-user filters</text>
+  <text x="756" y="226" class="b">Direct PDF export</text>
+
+  <!-- Box 5: Users -->
+  <rect x="996" y="78" width="224" height="240" rx="14" fill="#12233a"/>
+  <circle cx="1026" cy="110" r="15" fill="#5b8cff"/><text x="1026" y="115" class="n" text-anchor="middle">5</text>
+  <text x="1052" y="115" class="dt">40+ users · 3 roles</text>
+  <text x="1000" y="150" class="ds">Self-serving on demand</text>
+  <text x="1000" y="182" class="db">SRE engineers</text>
+  <text x="1000" y="204" class="db">Operations experts</text>
+  <text x="1000" y="226" class="db">Product owners</text>
+
+  <!-- arrows -->
+  <line x1="238" y1="198" x2="260" y2="198" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/>
+  <line x1="482" y1="198" x2="504" y2="198" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/>
+  <line x1="726" y1="198" x2="748" y2="198" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/>
+  <line x1="970" y1="198" x2="992" y2="198" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/>
+</svg>

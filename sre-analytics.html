@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SRE Operations Analytics — Leyre</title>
+  <meta name="description" content="Case study: SRE Operations Analytics — making business impact visible after a ServiceNow migration, by Leyre (Technical Product Owner / Data Analyst)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0e1116; --bg-soft: #161b22; --card: #1a212b; --border: #2a323d;
+      --text: #e6edf3; --text-dim: #9aa7b4; --accent: #5b8cff; --accent-soft: rgba(91,140,255,0.12);
+      --maxw: 900px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+    .back { font-weight: 600; color: var(--text-dim); }
+    .back:hover { color: var(--text); text-decoration: none; }
+    header.hero { padding: 56px 0 20px; }
+    .eyebrow { color: var(--accent); font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 14px; }
+    header.hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px; }
+    .subtitle { font-size: 1.3rem; font-weight: 600; color: var(--text-dim); margin-bottom: 18px; }
+    .lede { font-size: 1.15rem; line-height: 1.6; color: var(--text-dim); max-width: 680px; margin-bottom: 24px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .tag { font-size: .8rem; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 6px; }
+    .stack {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 18px 22px; font-size: .95rem; color: var(--text-dim);
+    }
+    .stack strong { color: var(--text); }
+    figure { margin: 40px 0; }
+    figure img { width: 100%; height: auto; border: 1px solid var(--border); border-radius: 14px; display: block; }
+    figcaption { color: var(--text-dim); font-size: .88rem; text-align: center; margin-top: 12px; }
+    section.block { padding: 30px 0; border-top: 1px solid var(--border); }
+    section.block h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 16px; }
+    section.block h3 { font-size: 1.05rem; font-weight: 700; margin: 22px 0 6px; }
+    section.block p { color: var(--text-dim); margin-bottom: 14px; }
+    section.block ul { list-style: none; margin-bottom: 8px; }
+    section.block li { color: var(--text-dim); padding-left: 22px; position: relative; margin-bottom: 10px; }
+    section.block li::before { content: "▹"; color: var(--accent); position: absolute; left: 0; }
+    section.block strong { color: var(--text); font-weight: 600; }
+    .tldr {
+      background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--accent);
+      border-radius: 12px; padding: 22px 24px; margin: 8px 0;
+    }
+    .tldr .label { color: var(--accent); font-weight: 700; font-size: .85rem; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 8px; }
+    .tldr p { color: var(--text-dim); margin: 0; }
+    .table-scroll { overflow-x: auto; margin: 8px 0; }
+    table.impact { width: 100%; border-collapse: collapse; font-size: .95rem; min-width: 560px; }
+    table.impact th, table.impact td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    table.impact thead th { color: var(--text); font-weight: 700; border-bottom: 2px solid var(--border); }
+    table.impact td:first-child, table.impact th:first-child { color: var(--text); font-weight: 600; }
+    table.impact td { color: var(--text-dim); }
+    table.impact tbody tr:last-child td { border-bottom: none; }
+    footer { border-top: 1px solid var(--border); padding: 32px 0 48px; text-align: center; color: var(--text-dim); font-size: .9rem; }
+    footer a { font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="index.html#projects" class="back">← Back to portfolio</a>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Professional Project · Technical Product Owner / Data Analyst</div>
+      <h1>SRE Operations Analytics</h1>
+      <div class="subtitle">Making business impact visible</div>
+      <p class="lede">
+        After migrating to a new ITSM system, the SRE department could no longer access the KPIs it needed.
+        I built the analytics layer that quantified the operational business impact that was no longer visible
+        after the migration to ServiceNow.
+      </p>
+      <div class="tags">
+        <span class="tag">SQL</span>
+        <span class="tag">Athena</span>
+        <span class="tag">QuickSight</span>
+        <span class="tag">Metric design</span>
+        <span class="tag">Pareto analysis</span>
+        <span class="tag">Root-cause attribution</span>
+        <span class="tag">KPI operations</span>
+      </div>
+      <div class="stack">
+        <strong>Stack:</strong> BMW Cloud Data Hub · AWS Athena · AWS QuickSight · SQL · ServiceNow (source)
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="block" style="border-top:none; padding-top:8px;">
+      <div class="tldr">
+        <div class="label">TL;DR</div>
+        <p>
+          When our SRE department migrated its ITSM system to ServiceNow, it lost usable reporting: the platform
+          couldn't join the tables our operational KPIs required. Acting as technical product owner and business
+          analyst, I designed and built the analytics layer (AWS Athena + QuickSight on BMW Cloud Data Hub) that made
+          business impact and other operational KPIs measurable and attributable — custom impact-intensity metrics
+          (like affected units per minute of incident), Pareto diagrams, and more. The dashboard is self-service across
+          many filters, so 40+ users across three roles (SRE engineers, operations experts, product owners) slice the
+          data to their own applications and plants.
+        </p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Context</h2>
+      <p>
+        I owned this initiative as technical product owner and business analyst (formal role: Agile Master / Data
+        Analyst), from problem definition through delivery. I partnered with the infrastructure team to understand the
+        source data and the data architecture, and with SRE application and plant colleagues as the primary stakeholders.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>Problem</h2>
+      <p>
+        Before the migration, the department's operational report was prepared by hand in Excel, taking two full working
+        days of manual work, once a month, with no professional tooling or defined rules.
+      </p>
+      <p>
+        Our ITSM system was migrated to ServiceNow, but ServiceNow's native dashboards couldn't create personalized KPIs
+        for us, so there was no way to quantify the business impact of our own applications. The available data was also
+        inconsistent: duplicated records, inconsistent formats, incorrect field values.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>What the analytics shows</h2>
+      <p>Once the pipeline was live, the analysis made several things visible that the department had never been able to see:</p>
+      <ul>
+        <li><strong>Operational business impact, quantified and attributed.</strong> Low-risk changes were causing business impact, revealing a change-testing issue and a risk-management deficit.</li>
+        <li><strong>Impact is highly concentrated (Pareto).</strong> A small set of products and service offerings drives the majority of incident-hours and affected-unit impact — telling the department exactly where to place focus teams instead of spreading effort evenly.</li>
+        <li><strong>Intensity, not just volume.</strong> The custom affected-units-per-minute metric surfaced services with few incidents but disproportionate impact-per-minute — severity the old volume-based reporting couldn't reveal.</li>
+      </ul>
+    </section>
+
+    <section class="block">
+      <h2>Key decisions</h2>
+
+      <h3>Designing the metrics, not just displaying them</h3>
+      <p>The operational KPIs weren't off-the-shelf — I had to define them for our context and defend the choices:</p>
+      <ul>
+        <li><strong>Affected units per minute of incident</strong> — my own impact-intensity metric (affected units ÷ incident duration), so services of very different scale become comparable on severity, not just count.</li>
+        <li><strong>MTTR as the median, not the mean</strong> — repair-time distributions are heavily right-skewed (one 5,628-minute outlier would distort a mean), so the median is the honest central measure.</li>
+        <li><strong>MTBF over a fixed, user-defined observation window</strong> — a defined denominator (window ÷ failure count), scoped to items that actually had business impact, so the figure is comparable across services.</li>
+      </ul>
+
+      <h3>What I deliberately did not build</h3>
+      <p>
+        I evaluated real-time streaming (Kafka) against daily batch (Athena + QuickSight on Cloud Data Hub). The decisions
+        this data feeds run on a daily basis, so real-time would have doubled the cost and added maintenance for information
+        no decision needed. Choosing the cheaper, less impressive architecture was the right call.
+      </p>
+
+      <h3>Self-service by design</h3>
+      <p>
+        Discovery showed stakeholders needed different slices: provider ticket handling, issues by plant, impact-per-minute
+        by application. Rather than build a separate report per need, I built one filterable tool (date range + seven
+        categorical dimensions: domain, product, plant, contact type, unit class, and more) where each stakeholder
+        self-serves. Role-based access wasn't optional either: data-privacy policy meant not every user could see every
+        dataset, which is why QuickSight with granular access control plus per-user filtering won the front end.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>Solution</h2>
+      <p>A daily-refreshed pipeline:</p>
+      <figure>
+        <img src="sre-pipeline.svg" alt="Daily-refreshed analytics pipeline: ServiceNow → BMW Cloud Data Hub → AWS Athena (join 4 tables, clean & normalize in SQL) → AWS QuickSight (role-based access, per-user filters, PDF export) → 40+ self-service users." />
+        <figcaption>ServiceNow → BMW Cloud Data Hub → Athena (4-table join + SQL cleaning) → QuickSight → 40+ self-service users.</figcaption>
+      </figure>
+      <p>
+        <strong>Athena</strong> did the transformation the source system couldn't — joining incident data with the
+        department's Business Impact Reports across four tables, plus the cleaning that turned dirty data into something
+        trustworthy.
+      </p>
+      <p>
+        <strong>QuickSight</strong> turned it into views stakeholders self-serve, built to copy straight into the
+        management round with no rework.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>Impact</h2>
+      <div class="table-scroll">
+        <table class="impact">
+          <thead>
+            <tr><th></th><th>Before</th><th>After</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Business impact</td><td>Invisible</td><td>€1,942,960 quantified &amp; attributed</td></tr>
+            <tr><td>Report creation</td><td>2 working days/month, manual in Excel (approx. 24 person-days/year)</td><td>Near-zero; presentation-ready</td></tr>
+            <tr><td>Users / reach</td><td>1 analyst producing 1 monthly report</td><td>40+ users self-serving, across several departments in the domain</td></tr>
+            <tr><td>Data access</td><td>Request → wait</td><td>Self-service, filtered, on-demand</td></tr>
+            <tr><td>KPIs available</td><td>Basic</td><td>MTTR, MTBF, affected units/min, Pareto, risk attribution</td></tr>
+            <tr><td>Table joins</td><td>Not possible in ServiceNow</td><td>4-table joins in Athena</td></tr>
+            <tr><td>Running cost</td><td>—</td><td>approx. $500/month (≈ half of real-time)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The monthly report that consumed two full working days (approx. 24 person-days/year) is eliminated; 40+ users
+        across SRE engineers, operations experts and product owners now self-serve on demand, with the dashboards
+        available to several departments within the domain — an option that wasn't available before.
+      </p>
+      <p>Maintenance is minimal: human input only when the datasets change.</p>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <a href="index.html#projects">← Back to all projects</a>
+    </div>
+  </footer>
+</body>
+</html>
