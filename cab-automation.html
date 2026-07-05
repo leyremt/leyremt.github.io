@@ -93,22 +93,21 @@
   </header>
 
   <div class="wrap">
-    <figure>
-      <img src="cab-architecture.svg" alt="CAB OtD Automation — agent architecture: prepare → QA → tag pipeline driven by VS Code Copilot agents, integrating with ServiceNow." />
-      <figcaption>Agent architecture — a single orchestrator runs a Prepare → QA → Tag pipeline with three human checkpoints.</figcaption>
-    </figure>
-
-    <section class="block">
+    <section class="block" style="border-top:none; padding-top:8px;">
       <h2>Problem</h2>
       <p>
-        Every month the Global IT Change Advisory Board must decide which ServiceNow changes are relevant for our
-        department, and record the affected applications, feedback groups and plants across four agenda columns.
+        Every month, the Global IT Change Advisory Board must decide which changes in ServiceNow are relevant for our
+        department (IT for the plants), and record the affected applications, feedback groups and plants across.
+        This file is called the <strong>CAB Agenda</strong>.
       </p>
       <p>
-        The task was manual, repetitive and error-prone, with Excel as the main tool: for dozens of changes, a single
-        coordinator opened each record, downloaded an affected-application spreadsheet, interpreted evolving rules and
-        hand-typed four columns. This created transcription errors, inconsistency and severe key-person risk — the
-        classification rules lived in one person's head. On average it required up to <strong>4 hours of manual work each week</strong>.
+        The task was manual, repetitive and very error-prone, with Excel as the main tool. Every single change had an
+        attached Excel list, and this list had to be downloaded and opened to manually identify any applications relevant
+        to our department. Afterwards, the applications were manually copied to the final CAB Agenda file, along with
+        which departments and applications were affected. This created transcription errors, inconsistency and severe
+        key-person risk. Moreover, the classification rules were never officially documented, meaning the know-how was
+        just handed on. On average it required up to <strong>4 hours of manual work each week</strong>, and it had to be
+        completed as soon as possible so the CAB Agenda could be distributed to the relevant stakeholders.
       </p>
     </section>
 
@@ -118,6 +117,10 @@
         I designed and delivered an <strong>agentic automation</strong> that turns the process into a repeatable,
         rule-based pipeline with a human only at specific decision points. A single orchestrator agent runs three stages:
       </p>
+      <figure>
+        <img src="cab-architecture.svg" alt="CAB OtD Automation — agent architecture: prepare → QA → tag pipeline driven by VS Code Copilot agents, integrating with ServiceNow." />
+        <figcaption>Agent architecture — a single orchestrator runs a Prepare → QA → Tag pipeline with three human checkpoints.</figcaption>
+      </figure>
       <div class="pipeline-steps">
         <div class="step">
           <span class="num">1 · Prepare</span>
@@ -139,12 +142,13 @@
     </section>
 
     <section class="block">
-      <h2>My contribution as Product Owner</h2>
+      <h2>My contribution as CAB Briefing Automation Product Owner</h2>
       <ul>
         <li>Documented and collected tribal knowledge into explicit, unit-tested classification rules (the single source of truth), gathered from the most relevant stakeholders.</li>
         <li>Defined the <strong>agent architecture</strong> (orchestrator + specialized prepare / QA / tag subagents) and the human-in-the-loop checkpoints.</li>
-        <li>Authored the product backlog — 2 developers, 2 epics, 5 user stories with acceptance criteria, story-point estimates, and a MoSCoW / value-vs-effort prioritization.</li>
-        <li>Embedded <strong>security-by-design</strong>: secrets kept out of version control, least-privilege access, and a mandatory confirmation before any production change.</li>
+        <li>Managed the product backlog with 2 developers, 2 epics, 5 user stories each with acceptance criteria, and a MoSCoW / value-vs-effort prioritization.</li>
+        <li>Embedded <strong>security-by-design</strong>: personal data kept out of version control, least-privilege access, and a mandatory confirmation before any production change.</li>
+        <li>Can be easily used with <strong>GitHub Copilot</strong>.</li>
       </ul>
     </section>
 
@@ -153,8 +157,8 @@
       <div class="impact-grid">
         <div class="impact-card"><p><strong>Faster cycle time</strong> and near-elimination of manual transcription errors.</p></div>
         <div class="impact-card"><p><strong>Consistency &amp; auditability</strong> through rule-driven, independently QA'd output.</p></div>
-        <div class="impact-card"><p><strong>Reduced key-person risk</strong> — the process is now documented, testable and handover-ready.</p></div>
-        <div class="impact-card"><p><strong>A clear roadmap to full autonomy</strong> — non-interactive auth, scheduling, confidence-gated auto-tagging and a self-service UI.</p></div>
+        <div class="impact-card"><p><strong>Reduced key-person risk</strong>: the process is now documented, testable and handover-ready.</p></div>
+        <div class="impact-card"><p><strong>A clear roadmap to full autonomy</strong>: non-interactive auth, scheduling, confidence-gated auto-tagging, a user-friendly front-end UI, usable for other domains, and adaptability to the CAB plants.</p></div>
       </div>
     </section>
 
