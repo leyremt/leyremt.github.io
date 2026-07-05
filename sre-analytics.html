@@ -112,7 +112,7 @@
         <div class="label">TL;DR</div>
         <p>
           When our SRE department migrated its ITSM system to ServiceNow, it lost usable reporting: the platform
-          couldn't join the tables our operational KPIs required. Acting as technical product owner and business
+          could not join the tables our operational KPIs required. Acting as technical product owner and business
           analyst, I designed and built the analytics layer (AWS Athena + QuickSight on BMW Cloud Data Hub) that made
           business impact and other operational KPIs measurable and attributable — custom impact-intensity metrics
           (like affected units per minute of incident), Pareto diagrams, and more. The dashboard is self-service across
@@ -134,11 +134,11 @@
     <section class="block">
       <h2>Problem</h2>
       <p>
-        Before the migration, the department's operational report was prepared by hand in Excel, taking two full working
+        Before the migration, the departmental operational report was prepared by hand in Excel, taking two full working
         days of manual work, once a month, with no professional tooling or defined rules.
       </p>
       <p>
-        Our ITSM system was migrated to ServiceNow, but ServiceNow's native dashboards couldn't create personalized KPIs
+        Our ITSM system was migrated to ServiceNow, but the native ServiceNow dashboards could not create personalized KPIs
         for us, so there was no way to quantify the business impact of our own applications. The available data was also
         inconsistent: duplicated records, inconsistent formats, incorrect field values.
       </p>
@@ -150,7 +150,7 @@
       <ul>
         <li><strong>Operational business impact, quantified and attributed.</strong> Low-risk changes were causing business impact, revealing a change-testing issue and a risk-management deficit.</li>
         <li><strong>Impact is highly concentrated (Pareto).</strong> A small set of products and service offerings drives the majority of incident-hours and affected-unit impact — telling the department exactly where to place focus teams instead of spreading effort evenly.</li>
-        <li><strong>Intensity, not just volume.</strong> The custom affected-units-per-minute metric surfaced services with few incidents but disproportionate impact-per-minute — severity the old volume-based reporting couldn't reveal.</li>
+        <li><strong>Intensity, not just volume.</strong> The custom affected-units-per-minute metric surfaced services with few incidents but disproportionate impact-per-minute — severity the old volume-based reporting could not reveal.</li>
       </ul>
 
       <figure>
@@ -173,7 +173,7 @@
       <h2>Key decisions</h2>
 
       <h3>Designing the metrics, not just displaying them</h3>
-      <p>The operational KPIs weren't off-the-shelf — I had to define them for our context and defend the choices:</p>
+      <p>The operational KPIs were not off-the-shelf — I had to define them for our context and defend the choices:</p>
       <ul>
         <li><strong>Affected units per minute of incident</strong> — my own impact-intensity metric (affected units ÷ incident duration), so services of very different scale become comparable on severity, not just count.</li>
         <li><strong>MTTR as the median, not the mean</strong> — repair-time distributions are heavily right-skewed (one 5,628-minute outlier would distort a mean), so the median is the honest central measure.</li>
@@ -197,7 +197,7 @@
         Discovery showed stakeholders needed different slices: provider ticket handling, issues by plant, impact-per-minute
         by application. Rather than build a separate report per need, I built one filterable tool (date range + seven
         categorical dimensions: domain, product, plant, contact type, unit class, and more) where each stakeholder
-        self-serves. Role-based access wasn't optional either: data-privacy policy meant not every user could see every
+        self-serves. Role-based access was not optional either: data-privacy policy meant not every user could see every
         dataset, which is why QuickSight with granular access control plus per-user filtering won the front end.
       </p>
       <figure>
@@ -214,8 +214,8 @@
         <figcaption>ServiceNow → BMW Cloud Data Hub → Athena (4-table join + SQL cleaning) → QuickSight → 40+ self-service users.</figcaption>
       </figure>
       <p>
-        <strong>Athena</strong> did the transformation the source system couldn't — joining incident data with the
-        department's Business Impact Reports across four tables, plus the cleaning that turned dirty data into something
+        <strong>Athena</strong> did the transformation the source system could not — joining incident data with the
+        departmental Business Impact Reports across four tables, plus the cleaning that turned dirty data into something
         trustworthy.
       </p>
       <pre class="code">CREATE OR REPLACE VIEW "incident_impact_view" AS
@@ -258,7 +258,7 @@ WHERE inc.department IN ('dept-a', 'dept-b');</pre>
       <p>
         The monthly report that consumed two full working days (approx. 24 person-days/year) is eliminated; 40+ users
         across SRE engineers, operations experts and product owners now self-serve on demand, with the dashboards
-        available to several departments within the domain — an option that wasn't available before.
+        available to several departments within the domain — an option that was not available before.
       </p>
       <p>Maintenance is minimal: human input only when the datasets change.</p>
     </section>
