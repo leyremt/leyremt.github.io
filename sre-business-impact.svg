@@ -1,0 +1,33 @@
+<svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', system-ui, -apple-system, sans-serif">
+  <style>
+    .ttl { font-size: 18px; font-weight: 700; fill: #1f2a37; }
+    .ctr { font-size: 30px; font-weight: 800; fill: #1f2a37; }
+    .lg  { font-size: 14px; fill: #374151; }
+    .pct { font-size: 14px; font-weight: 700; fill: #1f2a37; }
+  </style>
+  <rect x="0" y="0" width="760" height="320" rx="16" fill="#f4f6f9"/>
+  <text x="28" y="40" class="ttl">Business impact caused by changes</text>
+
+  <!-- donut -->
+  <g transform="rotate(-90 200 185)">
+    <circle cx="200" cy="185" r="110" fill="none" stroke="#6b8fa3" stroke-width="42" stroke-dasharray="428.6 262.4"/>
+    <circle cx="200" cy="185" r="110" fill="none" stroke="#3f6277" stroke-width="42" stroke-dasharray="172.8 518.2" stroke-dashoffset="-428.6"/>
+    <circle cx="200" cy="185" r="110" fill="none" stroke="#aac3d1" stroke-width="42" stroke-dasharray="89.8 601.2" stroke-dashoffset="-601.4"/>
+  </g>
+  <text x="200" y="193" class="ctr" text-anchor="middle">xxxxx €</text>
+
+  <!-- legend -->
+  <g>
+    <rect x="440" y="120" width="16" height="16" rx="3" fill="#6b8fa3"/>
+    <text x="466" y="133" class="lg">not caused by change</text>
+    <text x="720" y="133" class="pct" text-anchor="end">xx%</text>
+
+    <rect x="440" y="160" width="16" height="16" rx="3" fill="#3f6277"/>
+    <text x="466" y="173" class="lg">caused by change (registered)</text>
+    <text x="720" y="173" class="pct" text-anchor="end">xx%</text>
+
+    <rect x="440" y="200" width="16" height="16" rx="3" fill="#aac3d1"/>
+    <text x="466" y="213" class="lg">caused by change (unregistered)</text>
+    <text x="720" y="213" class="pct" text-anchor="end">xx%</text>
+  </g>
+</svg>

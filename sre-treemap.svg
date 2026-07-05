@@ -1,0 +1,35 @@
+<svg viewBox="0 0 760 340" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', system-ui, -apple-system, sans-serif">
+  <style>
+    .ttl { font-size: 14px; font-weight: 700; fill: #1f2a37; }
+    .nm  { font-size: 13px; font-weight: 700; fill: #16222e; }
+    .vl  { font-size: 11px; fill: #33454f; }
+  </style>
+  <rect x="0" y="0" width="760" height="340" rx="16" fill="#f4f6f9"/>
+
+  <text x="24" y="44" class="ttl">Impact per application</text>
+  <text x="388" y="44" class="ttl">Impact per plant</text>
+
+  <!-- LEFT: applications -->
+  <rect x="24"  y="60"  width="192" height="260" rx="4" fill="#6b8fa3"/>
+  <text x="36" y="86" class="nm">App 1</text><text x="36" y="104" class="vl">xxxxx</text>
+  <rect x="220" y="60"  width="152" height="146" rx="4" fill="#86a6b8"/>
+  <text x="232" y="86" class="nm">App 2</text><text x="232" y="104" class="vl">xxxxx</text>
+  <rect x="220" y="210" width="74"  height="110" rx="4" fill="#97b3c2"/>
+  <text x="230" y="234" class="nm">App 3</text><text x="230" y="252" class="vl">xxxxx</text>
+  <rect x="298" y="210" width="74"  height="52"  rx="4" fill="#a9c2d0"/>
+  <text x="308" y="232" class="nm">App 4</text>
+  <rect x="298" y="266" width="74"  height="54"  rx="4" fill="#b6cbd7"/>
+  <text x="308" y="288" class="nm">App 5</text>
+
+  <!-- RIGHT: plants -->
+  <rect x="388" y="60"  width="192" height="260" rx="4" fill="#6b8fa3"/>
+  <text x="400" y="86" class="nm">Plant 1</text><text x="400" y="104" class="vl">xxxxx</text>
+  <rect x="584" y="60"  width="152" height="146" rx="4" fill="#86a6b8"/>
+  <text x="596" y="86" class="nm">Plant 2</text><text x="596" y="104" class="vl">xxxxx</text>
+  <rect x="584" y="210" width="74"  height="110" rx="4" fill="#97b3c2"/>
+  <text x="594" y="234" class="nm">Plant 3</text><text x="594" y="252" class="vl">xxxxx</text>
+  <rect x="662" y="210" width="74"  height="52"  rx="4" fill="#a9c2d0"/>
+  <text x="672" y="232" class="nm">Plant 4</text>
+  <rect x="662" y="266" width="74"  height="54"  rx="4" fill="#b6cbd7"/>
+  <text x="672" y="288" class="nm">Plant 5</text>
+</svg>

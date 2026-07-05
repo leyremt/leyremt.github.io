@@ -1,0 +1,46 @@
+<svg viewBox="0 0 760 340" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', system-ui, -apple-system, sans-serif">
+  <style>
+    .ttl { font-size: 14px; font-weight: 700; fill: #1f2a37; }
+    .yl  { font-size: 11px; fill: #6b7280; }
+    .ax  { font-size: 10px; fill: #6b7280; }
+  </style>
+  <rect x="0" y="0" width="760" height="340" rx="16" fill="#f4f6f9"/>
+
+  <!-- LEFT: MTBF -->
+  <text x="40" y="40" class="ttl">MTBF (days) per application</text>
+  <line x1="52" y1="290" x2="360" y2="290" stroke="#cfd6de"/>
+  <text x="46" y="90" class="yl" text-anchor="end">xxxxx</text>
+  <g fill="#7fa0b2">
+    <rect x="60"  y="90"  width="26" height="200"/>
+    <rect x="98"  y="90"  width="26" height="200"/>
+    <rect x="136" y="90"  width="26" height="200"/>
+    <rect x="174" y="90"  width="26" height="200"/>
+    <rect x="212" y="180" width="26" height="110"/>
+    <rect x="250" y="180" width="26" height="110"/>
+    <rect x="288" y="220" width="26" height="70"/>
+    <rect x="326" y="250" width="26" height="40"/>
+  </g>
+  <g class="ax" text-anchor="middle">
+    <text x="73" y="304">A1</text><text x="111" y="304">A2</text><text x="149" y="304">A3</text><text x="187" y="304">A4</text>
+    <text x="225" y="304">A5</text><text x="263" y="304">A6</text><text x="301" y="304">A7</text><text x="339" y="304">A8</text>
+  </g>
+
+  <!-- RIGHT: MTTR -->
+  <text x="408" y="40" class="ttl">MTTR median (min) per application</text>
+  <line x1="420" y1="290" x2="728" y2="290" stroke="#cfd6de"/>
+  <text x="414" y="90" class="yl" text-anchor="end">xxxxx</text>
+  <g fill="#7fa0b2">
+    <rect x="428" y="80"  width="26" height="210"/>
+    <rect x="466" y="200" width="26" height="90"/>
+    <rect x="504" y="230" width="26" height="60"/>
+    <rect x="542" y="245" width="26" height="45"/>
+    <rect x="580" y="252" width="26" height="38"/>
+    <rect x="618" y="260" width="26" height="30"/>
+    <rect x="656" y="268" width="26" height="22"/>
+    <rect x="694" y="275" width="26" height="15"/>
+  </g>
+  <g class="ax" text-anchor="middle">
+    <text x="441" y="304">A1</text><text x="479" y="304">A2</text><text x="517" y="304">A3</text><text x="555" y="304">A4</text>
+    <text x="593" y="304">A5</text><text x="631" y="304">A6</text><text x="669" y="304">A7</text><text x="707" y="304">A8</text>
+  </g>
+</svg>

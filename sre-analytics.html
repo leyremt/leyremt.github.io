@@ -68,6 +68,8 @@
     table.impact td:first-child, table.impact th:first-child { color: var(--text); font-weight: 600; }
     table.impact td { color: var(--text-dim); }
     table.impact tbody tr:last-child td { border-bottom: none; }
+    pre.code { background: #0b1119; border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; overflow-x: auto; font-family: 'SFMono-Regular', Menlo, Consolas, monospace; font-size: .82rem; line-height: 1.65; color: #c9d4e0; margin: 8px 0; }
+    figure.small img { max-width: 620px; margin: 0 auto; }
     footer { border-top: 1px solid var(--border); padding: 32px 0 48px; text-align: center; color: var(--text-dim); font-size: .9rem; }
     footer a { font-weight: 600; }
   </style>
@@ -150,6 +152,21 @@
         <li><strong>Impact is highly concentrated (Pareto).</strong> A small set of products and service offerings drives the majority of incident-hours and affected-unit impact — telling the department exactly where to place focus teams instead of spreading effort evenly.</li>
         <li><strong>Intensity, not just volume.</strong> The custom affected-units-per-minute metric surfaced services with few incidents but disproportionate impact-per-minute — severity the old volume-based reporting couldn't reveal.</li>
       </ul>
+
+      <figure>
+        <img src="sre-business-impact.svg" alt="Donut chart: business impact caused by changes, split into not caused by change, caused by registered change, and caused by unregistered change." />
+        <figcaption>Business impact quantified and split by whether it was caused by a change. <em>Anonymized — real figures removed.</em></figcaption>
+      </figure>
+
+      <figure>
+        <img src="sre-treemap.svg" alt="Two treemaps: operational impact attributed per application and per plant." />
+        <figcaption>Impact attributed per application and per plant. <em>Anonymized.</em></figcaption>
+      </figure>
+
+      <figure>
+        <img src="sre-pareto.svg" alt="Pareto chart: incident hours per application with a cumulative impact line, showing impact concentrated in a few applications." />
+        <figcaption>Pareto — a small set of applications drives most of the impact. <em>Anonymized.</em></figcaption>
+      </figure>
     </section>
 
     <section class="block">
@@ -162,6 +179,11 @@
         <li><strong>MTTR as the median, not the mean</strong> — repair-time distributions are heavily right-skewed (one 5,628-minute outlier would distort a mean), so the median is the honest central measure.</li>
         <li><strong>MTBF over a fixed, user-defined observation window</strong> — a defined denominator (window ÷ failure count), scoped to items that actually had business impact, so the figure is comparable across services.</li>
       </ul>
+
+      <figure>
+        <img src="sre-maintenance.svg" alt="Two bar charts: MTBF in days and median MTTR in minutes, per application." />
+        <figcaption>MTBF (days) and median MTTR (minutes) per application. <em>Anonymized.</em></figcaption>
+      </figure>
 
       <h3>What I deliberately did not build</h3>
       <p>
@@ -178,6 +200,10 @@
         self-serves. Role-based access wasn't optional either: data-privacy policy meant not every user could see every
         dataset, which is why QuickSight with granular access control plus per-user filtering won the front end.
       </p>
+      <figure>
+        <img src="sre-controls.svg" alt="Dashboard filter controls: date range plus dropdowns for domain, product, contact type, plant and unit class." />
+        <figcaption>One filterable tool — date range + categorical dimensions — where each stakeholder self-serves. <em>Anonymized.</em></figcaption>
+      </figure>
     </section>
 
     <section class="block">
@@ -192,6 +218,19 @@
         department's Business Impact Reports across four tables, plus the cleaning that turned dirty data into something
         trustworthy.
       </p>
+      <pre class="code">CREATE OR REPLACE VIEW "incident_impact_view" AS
+SELECT
+    inc.*
+  , impact.*
+  , owner.*
+  , chg.*
+FROM
+    incidents inc
+    LEFT JOIN business_impact impact ON (inc.inc_id = impact.related_incident)
+    LEFT JOIN ownership       owner  ON (impact.prb_id = owner.prb_id)
+    LEFT JOIN changes         chg    ON (inc.caused_by_chg = chg.chg_id)
+WHERE inc.department IN ('dept-a', 'dept-b');</pre>
+      <p style="font-size:.88rem; color:var(--text-dim); margin-top:-4px;"><em>Simplified &amp; anonymized — table, view and department names replaced.</em></p>
       <p>
         <strong>QuickSight</strong> turned it into views stakeholders self-serve, built to copy straight into the
         management round with no rework.
@@ -206,7 +245,7 @@
             <tr><th></th><th>Before</th><th>After</th></tr>
           </thead>
           <tbody>
-            <tr><td>Business impact</td><td>Invisible</td><td>€1,942,960 quantified &amp; attributed</td></tr>
+            <tr><td>Business impact</td><td>Invisible</td><td>Business impact quantified and attributed per application and plant</td></tr>
             <tr><td>Report creation</td><td>2 working days/month, manual in Excel (approx. 24 person-days/year)</td><td>Near-zero; presentation-ready</td></tr>
             <tr><td>Users / reach</td><td>1 analyst producing 1 monthly report</td><td>40+ users self-serving, across several departments in the domain</td></tr>
             <tr><td>Data access</td><td>Request → wait</td><td>Self-service, filtered, on-demand</td></tr>
