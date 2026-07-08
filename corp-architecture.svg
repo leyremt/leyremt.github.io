@@ -1,0 +1,86 @@
+<svg viewBox="0 0 1280 520" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', system-ui, -apple-system, sans-serif">
+  <defs>
+    <marker id="cah" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#64748b"/></marker>
+    <marker id="cad" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#5b8cff"/></marker>
+    <style>
+      .t   { font-size: 15px; font-weight: 700; fill: #1f2a37; }
+      .b   { font-size: 12.5px; fill: #374151; }
+      .n   { font-size: 14px; font-weight: 700; fill: #ffffff; }
+      .cap { font-size: 22px; font-weight: 800; fill: #1f2a37; }
+      .band{ font-size: 12px; font-weight: 700; fill: #8a94a3; letter-spacing: 1.1px; }
+      .dt  { font-size: 15px; font-weight: 700; fill: #e5ecf5; }
+      .db  { font-size: 12.5px; fill: #b3c1d1; }
+      .lbl { font-size: 11px; fill: #6b7280; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="520" rx="16" fill="#f4f6f9"/>
+  <text x="24" y="44" class="cap">Serverless daily pipeline + on-demand agent</text>
+  <text x="24" y="82" class="band">DAILY CRON · GITHUB ACTIONS · WEEKDAYS 06:00 UTC</text>
+
+  <!-- Box 1: Sources -->
+  <rect x="20" y="96" width="236" height="214" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <circle cx="50" cy="126" r="15" fill="#64748b"/><text x="50" y="131" class="n" text-anchor="middle">1</text>
+  <text x="76" y="131" class="t">Regulatory sources</text>
+  <text x="24" y="165" class="b">SEC EDGAR (US)</text>
+  <text x="24" y="187" class="b">BaFin WpÜG (DE)</text>
+  <text x="24" y="209" class="b">News RSS (DE buybacks)</text>
+  <text x="24" y="231" class="b">SpruchZ (squeeze-outs)</text>
+  <text x="24" y="253" class="b">OpenFIGI (ISIN→ticker)</text>
+
+  <!-- Box 2: Fetch -->
+  <rect x="271" y="96" width="236" height="214" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <circle cx="301" cy="126" r="15" fill="#2f6fb0"/><text x="301" y="131" class="n" text-anchor="middle">2</text>
+  <text x="327" y="131" class="t">Fetch</text>
+  <text x="275" y="165" class="b">edgar.py</text>
+  <text x="275" y="187" class="b">bafin.py</text>
+  <text x="275" y="209" class="b">buybacks.py</text>
+  <text x="275" y="231" class="b">squeezeouts.py</text>
+  <text x="275" y="262" class="lbl">one script per source</text>
+
+  <!-- Box 3: Build + enrich -->
+  <rect x="522" y="96" width="236" height="214" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <circle cx="552" cy="126" r="15" fill="#c67a1e"/><text x="552" y="131" class="n" text-anchor="middle">3</text>
+  <text x="578" y="131" class="t">Build + enrich</text>
+  <text x="526" y="165" class="b">build.py aggregates</text>
+  <text x="526" y="187" class="b">enrich.py: live prices</text>
+  <text x="526" y="209" class="b">+ arbitrage spreads</text>
+  <text x="526" y="231" class="b">Claude Haiku fallback</text>
+  <text x="526" y="253" class="b">for hidden prices</text>
+
+  <!-- Box 4: data.json -->
+  <rect x="773" y="96" width="236" height="214" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <circle cx="803" cy="126" r="15" fill="#7a5aa0"/><text x="803" y="131" class="n" text-anchor="middle">4</text>
+  <text x="829" y="131" class="t">data.json</text>
+  <text x="777" y="165" class="b">Static source of truth</text>
+  <text x="777" y="187" class="b">committed to the repo</text>
+  <text x="777" y="209" class="b">no database</text>
+
+  <!-- Box 5: Dashboard -->
+  <rect x="1024" y="96" width="236" height="214" rx="14" fill="#ffffff" stroke="#d7dee7"/>
+  <circle cx="1054" cy="126" r="15" fill="#2e9b57"/><text x="1054" y="131" class="n" text-anchor="middle">5</text>
+  <text x="1080" y="131" class="t">Dashboard</text>
+  <text x="1028" y="165" class="b">GitHub Pages</text>
+  <text x="1028" y="187" class="b">Sortable table</text>
+  <text x="1028" y="209" class="b">Odd-lot flag + alerts</text>
+  <text x="1028" y="231" class="b">Links to memos</text>
+
+  <!-- pipeline arrows -->
+  <line x1="258" y1="203" x2="269" y2="203" stroke="#64748b" stroke-width="2" marker-end="url(#cah)"/>
+  <line x1="509" y1="203" x2="520" y2="203" stroke="#64748b" stroke-width="2" marker-end="url(#cah)"/>
+  <line x1="760" y1="203" x2="771" y2="203" stroke="#64748b" stroke-width="2" marker-end="url(#cah)"/>
+  <line x1="1011" y1="203" x2="1022" y2="203" stroke="#64748b" stroke-width="2" marker-end="url(#cah)"/>
+
+  <!-- On-demand lane -->
+  <text x="24" y="362" class="band">ON-DEMAND · USER-TRIGGERED</text>
+  <rect x="271" y="378" width="738" height="118" rx="14" fill="#12233a"/>
+  <circle cx="301" cy="410" r="15" fill="#5b8cff"/><text x="301" y="415" class="n" text-anchor="middle">A</text>
+  <text x="327" y="415" class="dt">Deep-dive agent (LangGraph)</text>
+  <text x="291" y="446" class="db">Classifies the event, then routes to a tender / squeeze-out / merger analyst.</text>
+  <text x="291" y="468" class="db">Tools: fetch offer document · search news · get live quote.</text>
+  <text x="291" y="490" class="db">Claude Opus 4 or Sonnet, then publishes a memo HTML page (about $0.30 each).</text>
+
+  <!-- trigger arrow from dashboard to agent -->
+  <path d="M1100,312 C1100,350 1050,360 1010,392" stroke="#5b8cff" stroke-width="2" stroke-dasharray="6 5" fill="none" marker-end="url(#cad)"/>
+  <text x="1120" y="352" class="lbl">on request</text>
+</svg>

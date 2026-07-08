@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corporate Actions Scanner — Leyre</title>
+  <meta name="description" content="Case study: Corporate Actions Scanner — a serverless tool that scans SEC and German regulators for special-situation arbitrage and publishes a free dashboard. By Leyre." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0e1116; --bg-soft: #161b22; --card: #1a212b; --border: #2a323d;
+      --text: #e6edf3; --text-dim: #9aa7b4; --accent: #5b8cff; --accent-soft: rgba(91,140,255,0.12);
+      --maxw: 900px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+    .back { font-weight: 600; color: var(--text-dim); }
+    .back:hover { color: var(--text); text-decoration: none; }
+    header.hero { padding: 56px 0 20px; }
+    .eyebrow { color: var(--accent); font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 14px; }
+    header.hero h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 14px; }
+    .dek { font-size: 1.3rem; line-height: 1.5; color: var(--text-dim); max-width: 640px; margin-bottom: 24px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .tag { font-size: .8rem; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 6px; }
+    .stack {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 18px 22px; font-size: .95rem; color: var(--text-dim);
+    }
+    .stack strong { color: var(--text); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-weight: 600; font-size: .98rem; transition: transform .15s, box-shadow .2s, border-color .2s; }
+    .btn:hover { text-decoration: none; transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { box-shadow: 0 8px 20px var(--accent-soft); }
+    .btn-ghost { background: var(--card); border: 1px solid var(--border); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--accent); }
+    section.block { padding: 30px 0; border-top: 1px solid var(--border); }
+    section.block h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 16px; }
+    section.block p { color: var(--text-dim); margin-bottom: 14px; }
+    section.block p:last-child { margin-bottom: 0; }
+    section.block strong { color: var(--text); font-weight: 600; }
+    figure { margin: 22px 0 8px; }
+    figure img { width: 100%; height: auto; border: 1px solid var(--border); border-radius: 14px; display: block; }
+    figcaption { color: var(--text-dim); font-size: .88rem; text-align: center; margin-top: 12px; }
+    .decision {
+      display: grid; grid-template-columns: 170px 1fr; gap: 12px 28px;
+      padding: 18px 0; border-top: 1px solid var(--border); align-items: start;
+    }
+    .decision:last-child { border-bottom: 1px solid var(--border); }
+    .decision .dtag { color: var(--accent); font-weight: 700; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; padding-top: 3px; }
+    .decision p { margin: 0; }
+    dl.outcomes { margin: 4px 0; }
+    .outcome {
+      display: grid; grid-template-columns: 220px 1fr; gap: 6px 28px;
+      padding: 16px 0; border-top: 1px solid var(--border); align-items: baseline;
+    }
+    .outcome:last-child { border-bottom: 1px solid var(--border); }
+    .outcome dt { color: var(--text); font-weight: 700; }
+    .outcome dd { margin: 0; color: var(--text-dim); }
+    .skills-line { font-size: .95rem; color: var(--text-dim); margin-top: 6px; }
+    .skills-line span { color: var(--accent); }
+    footer { border-top: 1px solid var(--border); padding: 32px 0 48px; color: var(--text-dim); font-size: .95rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+    footer a { font-weight: 600; }
+    @media (max-width: 620px) {
+      .decision, .outcome { grid-template-columns: 1fr; gap: 4px; }
+      .decision .dtag { padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="index.html#projects" class="back">← Back to portfolio</a>
+      <div style="display:flex; gap:20px;">
+        <a href="https://leyremt.github.io/corp-actions-scanner/" target="_blank" rel="noopener">Live tool ↗</a>
+        <a href="https://github.com/leyremt/corp-actions-scanner" target="_blank" rel="noopener">View the code ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Personal Project</div>
+      <h1>Corporate Actions Scanner</h1>
+      <p class="dek">It watches SEC and German regulators every morning, finds special-situation deals, works out the arbitrage spread, and publishes the lot to a dashboard that costs nothing to run.</p>
+      <div class="tags">
+        <span class="tag">SEC EDGAR</span>
+        <span class="tag">BaFin</span>
+        <span class="tag">Arbitrage</span>
+        <span class="tag">LLM agent</span>
+        <span class="tag">Serverless</span>
+        <span class="tag">Personal project</span>
+      </div>
+      <div class="stack">
+        <strong>Stack:</strong> Python · Anthropic API (Claude Haiku, Sonnet, Opus) · LangGraph · GitHub Actions (daily cron) · GitHub Pages
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://leyremt.github.io/corp-actions-scanner/" target="_blank" rel="noopener">Open the live tool ↗</a>
+        <a class="btn btn-ghost" href="https://github.com/leyremt/corp-actions-scanner" target="_blank" rel="noopener">View the code ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="block" style="border-top:none; padding-top:8px;">
+      <p>
+        Every weekday morning it scans SEC EDGAR and a set of German regulatory sources for corporate actions worth a
+        closer look: odd-lot tenders, going-private deals, mergers, delistings and squeeze-outs. For each one it works
+        out the spread between the offer price and the market price, flags the interesting cases, and writes everything
+        to a static dashboard. There is no server, no database and no paid data feed. GitHub Actions runs it on a
+        schedule and GitHub Pages serves the result, so the whole thing costs nothing to keep alive.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>Problem</h2>
+      <p>
+        Corporate action data is scattered. SEC filings live in EDGAR, German offers sit in the BaFin WpÜG register,
+        and buybacks and squeeze-outs turn up in other places again. None of them talk to each other. To find a tender
+        worth trading you had to check several sources by hand, read the filing to pull out the offer price, then
+        compare it against the live quote yourself.
+      </p>
+      <p>
+        It was slow and easy to get wrong, and by the time you spotted a deal the window had often narrowed. I wanted
+        one place that did the watching and the arithmetic for me.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>How it works</h2>
+      <p>
+        A daily job runs on weekdays at 06:00 UTC and fetches from each source with its own small script: <strong>edgar.py</strong>
+        for SEC filings, <strong>bafin.py</strong> for the German register, and <strong>buybacks.py</strong> and
+        <strong>squeezeouts.py</strong> for the harder German cases. <strong>build.py</strong> merges them into a single
+        list, and <strong>enrich.py</strong> attaches a live price and calculates the spread. When a filing hides the
+        offer price in prose, a Claude Haiku call pulls it out as a fallback. The result is written to one
+        <strong>data.json</strong> that the dashboard reads. Nothing runs between refreshes.
+      </p>
+      <figure>
+        <img src="corp-architecture.svg" alt="Architecture: a daily GitHub Actions cron fetches from SEC EDGAR, BaFin, news and SpruchZ, aggregates and enriches with prices and spreads into data.json, served by a GitHub Pages dashboard; a separate on-demand LangGraph agent writes deep-dive memos." />
+        <figcaption>Daily serverless pipeline, with a separate on-demand agent for deep-dive memos.</figcaption>
+      </figure>
+      <p>
+        On top of the daily scan there is an on-demand deep-dive agent. When a deal looks worth the effort, I trigger it
+        and it does the reading. It classifies the event, routes to the right analyst logic for a tender, squeeze-out or
+        merger, and uses tools to fetch the offer document, search news and get a live quote. It writes a short risk and
+        reward memo as its own HTML page and links it from the dashboard. It is not part of the daily job on purpose, so
+        the model cost only happens when I ask for it.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>Decisions &amp; trade-offs</h2>
+      <div class="decision">
+        <div class="dtag">No server</div>
+        <p>GitHub Actions on a schedule, GitHub Pages for the front end. Nothing to pay for or patch, and I can share a result by sending a URL. The cost of that choice is a once-a-day refresh instead of live data, which is fine for deals that play out over weeks.</p>
+      </div>
+      <div class="decision">
+        <div class="dtag">Agent on demand</div>
+        <p>The deep-dive agent is expensive compared with the scan, so it never runs on the schedule. It only runs when I trigger it. That keeps the model bill to roughly $0.30 per memo instead of an open-ended daily spend.</p>
+      </div>
+      <div class="decision">
+        <div class="dtag">Heuristics before LLM</div>
+        <p>The SEC offer price comes out of a regex first, and a model only as a fallback. Most filings follow a predictable shape, so paying for an LLM on every row would be wasteful. The trade-off is that odd filings need a manual check, and a spread above about 25% is usually a parsing error rather than free money.</p>
+      </div>
+      <div class="decision">
+        <div class="dtag">Coverage over precision</div>
+        <p>There is no central register for German buybacks, so that source scrapes news instead. It catches more, but the acceptance dates are unreliable and some of it is noise. Partial coverage beat none, so I kept it and marked the weak fields rather than pretending they were solid.</p>
+      </div>
+      <div class="decision">
+        <div class="dtag">Practical proxies</div>
+        <p>The official German squeeze-out source has no API, so I read the SpruchZ feed as a stand-in for now. The proper central-registry route through Bundesanzeiger is a later phase, kept separate on purpose.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>What it delivers</h2>
+      <dl class="outcomes">
+        <div class="outcome"><dt>One dashboard, two markets</dt><dd>US and German corporate actions in one sortable table, with the spread already calculated.</dd></div>
+        <div class="outcome"><dt>Odd-lot tenders flagged</dt><dd>Small holders skip proration, so these are often the cleanest trades. They get their own tag.</dd></div>
+        <div class="outcome"><dt>Nothing new slips past</dt><dd>New deals are tracked by first-seen date and open a GitHub issue automatically.</dd></div>
+        <div class="outcome"><dt>Deep-dive memos</dt><dd>On request, a memo that goes past the raw spread into proration, terms, timeline and board stance.</dd></div>
+        <div class="outcome"><dt>Zero running cost</dt><dd>Runs itself every weekday on free tiers, with no infrastructure to maintain.</dd></div>
+      </dl>
+    </section>
+
+    <section class="block">
+      <h2>Known limitations</h2>
+      <p>
+        I would rather be honest about where it is rough. SEC offer prices come from pattern-matching, so a few are
+        wrong and show up as implausible spreads. BaFin is a thin source, around a dozen offers a year, and brand-new
+        ones arrive before their documents do. Proper squeeze-outs are not in BaFin at all and wait on a later
+        Bundesanzeiger phase. German buyback acceptance dates are the weakest part, because the sites throttle automated
+        access and the news text is inconsistent.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>Why it matters</h2>
+      <p>
+        This is the kind of thing I build for myself: a real problem I actually had, automated end to end, with the
+        boring parts made cheap and the expensive parts made optional. It leans on how I invest and on the engineering
+        to make the data trustworthy. I would rather ship something narrow that works every morning than something broad
+        that needs babysitting.
+      </p>
+      <p class="skills-line">
+        Special-situations investing <span>·</span> Data pipelines <span>·</span> LLM agents <span>·</span> Serverless automation <span>·</span> Product scoping
+      </p>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <a href="index.html#projects">← Back to all projects</a>
+      <div style="display:flex; flex-wrap:wrap; gap:20px;">
+        <a href="https://leyremt.github.io/corp-actions-scanner/" target="_blank" rel="noopener">Live tool ↗</a>
+        <a href="https://github.com/leyremt/corp-actions-scanner" target="_blank" rel="noopener">View the code ↗</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
