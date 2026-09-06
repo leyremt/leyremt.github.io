@@ -1,0 +1,97 @@
+<svg viewBox="0 0 1280 430" xmlns="http://www.w3.org/2000/svg" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.2" fill="#e4e0d6"/>
+    </pattern>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.08"/>
+    </filter>
+    <style>
+      .name{font-size:13px;font-weight:500;fill:#17160f;}
+      .sub{font-size:11px;fill:#918d82;}
+      .cap{font-size:22px;font-weight:700;fill:#1f2a37;}
+      .tl{font-size:12px;font-weight:500;fill:#17160f;}
+      .note{font-size:12px;fill:#625f56;font-style:italic;}
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="430" rx="16" fill="#f6f5f2"/>
+  <rect x="0" y="0" width="1280" height="430" rx="16" fill="url(#dots)"/>
+  <text x="30" y="42" class="cap">CAB agent · proposed n8n workflow</text>
+
+  <!-- connectors -->
+  <g fill="none" stroke="#b9b4a8" stroke-width="2">
+    <path d="M138,189 C168,189 300,189 330,189"/>
+    <path d="M408,189 C438,189 570,189 600,189"/>
+    <path d="M678,189 C708,189 842,189 872,189"/>
+    <path d="M950,189 C980,189 1112,189 1142,189"/>
+  </g>
+  <g fill="#b9b4a8">
+    <circle cx="138" cy="189" r="3.5"/><circle cx="408" cy="189" r="3.5"/>
+    <circle cx="678" cy="189" r="3.5"/><circle cx="950" cy="189" r="3.5"/>
+  </g>
+
+  <!-- dotted tool connectors from Agent node -->
+  <g fill="none" stroke="#9aa7b4" stroke-width="1.6" stroke-dasharray="5 5">
+    <path d="M639,228 C639,272 540,268 540,310"/>
+    <path d="M639,228 C639,272 766,268 766,310"/>
+  </g>
+
+  <!-- NODE 1: Email Trigger -->
+  <rect x="60" y="150" width="78" height="78" rx="16" fill="#ffffff" stroke="#e4e0d6" filter="url(#sh)"/>
+  <rect x="86" y="180" width="26" height="17" rx="2" fill="none" stroke="#ea4b71" stroke-width="2"/>
+  <path d="M86,181 L99,190 L112,181" fill="none" stroke="#ea4b71" stroke-width="2" stroke-linejoin="round"/>
+  <text x="99" y="250" class="name" text-anchor="middle">Email Trigger</text>
+  <text x="99" y="268" class="sub" text-anchor="middle">process starts</text>
+
+  <!-- NODE 2: Save to Teams -->
+  <rect x="330" y="150" width="78" height="78" rx="16" fill="#ffffff" stroke="#e4e0d6" filter="url(#sh)"/>
+  <path d="M357,184 h7 l3,3 h11 v9 a2 2 0 0 1 -2 2 h-17 a2 2 0 0 1 -2 -2 z" fill="none" stroke="#4b53bc" stroke-width="2" stroke-linejoin="round"/>
+  <text x="369" y="250" class="name" text-anchor="middle">Save to Teams</text>
+  <text x="369" y="268" class="sub" text-anchor="middle">store the file</text>
+
+  <!-- NODE 3: Agent -->
+  <rect x="600" y="150" width="78" height="78" rx="16" fill="#ffffff" stroke="#e4e0d6" filter="url(#sh)"/>
+  <line x1="639" y1="177" x2="639" y2="172" stroke="#2f6fb0" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="639" cy="171" r="1.6" fill="#2f6fb0"/>
+  <rect x="627" y="179" width="24" height="18" rx="5" fill="none" stroke="#2f6fb0" stroke-width="2"/>
+  <circle cx="634" cy="188" r="1.7" fill="#2f6fb0"/>
+  <circle cx="644" cy="188" r="1.7" fill="#2f6fb0"/>
+  <text x="639" y="250" class="name" text-anchor="middle">Agent</text>
+  <text x="639" y="268" class="sub" text-anchor="middle">read CHGs, extract Excel,</text>
+  <text x="639" y="282" class="sub" text-anchor="middle">prepare + QA</text>
+
+  <!-- NODE 4: Human review (highlighted) -->
+  <rect x="872" y="150" width="78" height="78" rx="16" fill="#fffaf2" stroke="#e0922f" stroke-width="2" filter="url(#sh)"/>
+  <circle cx="911" cy="182" r="5.5" fill="#e0922f"/>
+  <path d="M900,200 a11 11 0 0 1 22 0 Z" fill="#e0922f"/>
+  <text x="911" y="250" class="name" text-anchor="middle">Human review</text>
+  <text x="911" y="268" class="sub" text-anchor="middle">single check</text>
+
+  <!-- NODE 5: Send to stakeholders -->
+  <rect x="1142" y="150" width="78" height="78" rx="16" fill="#ffffff" stroke="#e4e0d6" filter="url(#sh)"/>
+  <rect x="1168" y="180" width="26" height="17" rx="2" fill="none" stroke="#2e9b57" stroke-width="2"/>
+  <path d="M1168,181 L1181,190 L1194,181" fill="none" stroke="#2e9b57" stroke-width="2" stroke-linejoin="round"/>
+  <text x="1181" y="250" class="name" text-anchor="middle">Send to stakeholders</text>
+  <text x="1181" y="268" class="sub" text-anchor="middle">agenda distributed</text>
+
+  <!-- TOOL NODE A: ServiceNow via ITSM Infrastructure MCP -->
+  <rect x="420" y="310" width="240" height="56" rx="12" fill="#ffffff" stroke="#e4e0d6" filter="url(#sh)"/>
+  <rect x="434" y="324" width="28" height="28" rx="7" fill="#3a7d44"/>
+  <text x="448" y="343" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">MCP</text>
+  <text x="474" y="335" class="tl">ServiceNow</text>
+  <text x="474" y="352" class="sub">via ITSM Infrastructure MCP</text>
+
+  <!-- TOOL NODE B: Classification rules -->
+  <rect x="676" y="310" width="180" height="56" rx="12" fill="#ffffff" stroke="#e4e0d6" filter="url(#sh)"/>
+  <rect x="690" y="324" width="28" height="28" rx="7" fill="#64748b"/>
+  <polyline points="697,338 702,343 711,332" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="730" y="335" class="tl">Classification rules</text>
+  <text x="730" y="352" class="sub">same logic, unchanged</text>
+
+  <!-- captions -->
+  <text x="639" y="392" class="note" text-anchor="middle">Infrastructure MCPs remove the ServiceNow permission problem</text>
+  <text x="984" y="326" class="note">Only human step before</text>
+  <text x="984" y="344" class="note">reaching stakeholders</text>
+  <path d="M980,332 C955,318 940,300 924,232" fill="none" stroke="#e0922f" stroke-width="1.4" stroke-dasharray="5 5"/>
+</svg>

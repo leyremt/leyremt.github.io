@@ -141,12 +141,14 @@
         <span class="tag">AI</span>
         <span class="tag">GitHub Copilot</span>
         <span class="tag">VS Copilot</span>
+        <span class="tag">n8n</span>
+        <span class="tag">MCP</span>
         <span class="tag">Change Advisory Board</span>
         <span class="tag">Plants</span>
       </div>
       <div class="stack">
         <strong>Stack:</strong> VS Code Copilot agents + skills · Python (openpyxl) · ServiceNow REST ·
-        Model Context Protocol (itsm-next MCP) · YubiKey / Azure AD auth
+        Model Context Protocol (ITSM Infrastructure MCP) · YubiKey / Azure AD auth
       </div>
     </div>
   </header>
@@ -210,6 +212,22 @@
         Human intervention is reduced to <strong>three checkpoints</strong>: one authentication, one go/no-go before the
         production write, and review of only the specific ambiguous rows.
       </p>
+    </section>
+
+    <section class="block">
+      <h2>The final version</h2>
+      <p>
+        The version that shipped is an <strong>n8n agent</strong>. Working closely with the infrastructure team, we
+        rebuilt the pipeline in n8n, which let us plug in the MCP servers maintained by that team directly. This solved
+        the hardest constraint of the earlier version, the ServiceNow permissions: instead of fighting access rights,
+        the agent now reaches ServiceNow through approved infrastructure MCPs. The outcome is a fully autonomous run that
+        needs a person only once, for a single review before the agenda goes to the relevant stakeholders. The
+        classification logic did not change; only the way the agent runs and connects did.
+      </p>
+      <figure>
+        <img src="cab-n8n.svg" alt="n8n workflow: an email trigger saves the file to Teams, an agent reads the CHGs, extracts the Excel files, prepares and QAs the agenda using ServiceNow through the ITSM Infrastructure MCP and the unchanged classification rules, a human reviews once, and the agenda is sent to stakeholders." />
+        <figcaption>The shipped n8n workflow: email to Teams, an agent that reads the CHGs and prepares the agenda through the ITSM Infrastructure MCP, one human review, then distribution.</figcaption>
+      </figure>
     </section>
 
     <section class="block">

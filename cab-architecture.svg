@@ -98,7 +98,7 @@
   <text x="992" y="394" class="h">3 · TAG</text>
   <text x="1382" y="393" class="hs" text-anchor="end">CAB Tagger agent</text>
   <text x="992" y="443" class="b">• Find rows = 'added CAB'</text>
-  <text x="992" y="470" class="b">• Resolve sys_ids (itsm-next)</text>
+  <text x="992" y="470" class="b">• Resolve sys_ids (ITSM Infra MCP)</text>
   <text x="992" y="497" class="b">• Write tag 'Prime_CAB'</text>
   <text x="992" y="524" class="b">• Idempotent — never double-tags</text>
   <text x="992" y="551" class="b">• Go/no-go before prod write</text>
@@ -137,9 +137,9 @@
   <text x="756" y="850" class="b">cleaned up after run</text>
   <text x="1028" y="900" class="lbl" text-anchor="end">write tag</text>
 
-  <!-- itsm-next MCP -->
+  <!-- ITSM Infrastructure MCP -->
   <rect x="1078" y="720" width="320" height="210" rx="14" fill="#ffffff" stroke="#d7dee7"/>
-  <text x="1102" y="760" class="t">itsm-next MCP</text>
+  <text x="1102" y="760" class="t">ITSM Infrastructure MCP</text>
   <text x="1102" y="792" class="b">change metadata + sys_id</text>
   <text x="1102" y="818" class="b">resolution</text>
   <text x="1102" y="850" class="b">auth: Azure AD + YubiKey</text>
