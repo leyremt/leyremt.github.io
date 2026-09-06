@@ -3,572 +3,318 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leyre — Portfolio</title>
-  <meta name="description" content="Leyre — Product &amp; Operations Specialist. Portfolio." />
-
-  <!-- ===== Tipografía (Google Fonts) ===== -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <title>Leyre — Product &amp; Operations Specialist</title>
+  <meta name="description" content="Leyre — Product & Operations Specialist. Portfolio of LLM automation, data pipelines and AI agents." />
+  <script data-goatcounter="https://leyremt.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <style>
-    /* ============================================================
-       PALETA Y VARIABLES  (cambia los colores aquí si quieres)
-    ============================================================ */
     :root {
-      --bg: #0e1116;
-      --bg-soft: #161b22;
-      --card: #1a212b;
-      --border: #2a323d;
-      --text: #e6edf3;
-      --text-dim: #9aa7b4;
-      --accent: #5b8cff;
-      --accent-soft: rgba(91, 140, 255, 0.12);
-      --radius: 16px;
-      --maxw: 1040px;
-      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --bg: #f4f3ef;
+      --text: #17160f;
+      --muted: #625f56;
+      --faint: #918d82;
+      --line: #d9d6cd;
+      --panel: #edece7;
+      --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
+      background: var(--bg); color: var(--text); font-family: var(--sans);
+      font-weight: 300; line-height: 1.7; letter-spacing: 0.01em;
       -webkit-font-smoothing: antialiased;
-      transition: background .3s ease, color .3s ease;
     }
+    img { max-width: 100%; }
     a { color: inherit; text-decoration: none; }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
-    section { padding: 88px 0; }
-    h2.section-title {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-    }
-    .section-sub { color: var(--text-dim); margin-bottom: 40px; max-width: 560px; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
 
-    /* ============================================================
-       NAVBAR
-    ============================================================ */
     header.nav {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(12px);
-      background: color-mix(in srgb, var(--bg) 80%, transparent);
-      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 30;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
     }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .logo { font-weight: 800; letter-spacing: -0.02em; font-size: 1.1rem; color: var(--accent); }
-    .nav-links { display: flex; gap: 28px; align-items: center; }
-    .nav-links a { color: var(--text-dim); font-size: .95rem; font-weight: 500; transition: color .2s; }
+    .nav-inner { display: flex; align-items: center; justify-content: flex-end; height: 76px; }
+    .brand { font-size: 1.15rem; font-weight: 400; letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 30px; margin-top: 10px; }
+    .nav-links a { font-size: .8rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted); }
     .nav-links a:hover { color: var(--text); }
-    .theme-btn {
-      background: var(--card); border: 1px solid var(--border);
-      color: var(--text); width: 38px; height: 38px; border-radius: 10px;
-      cursor: pointer; font-size: 1.05rem; display: grid; place-items: center;
-      transition: border-color .2s;
-    }
-    .theme-btn:hover { border-color: var(--accent); }
-    .nav-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+    .nav-toggle { display: none; }
 
-    /* ============================================================
-       HERO
-    ============================================================ */
-    .hero { padding: 96px 0 72px; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--accent-soft); color: var(--accent);
-      font-size: .85rem; font-weight: 600;
-      padding: 6px 14px; border-radius: 999px; margin-bottom: 24px;
+    /* hero */
+    .hero { padding: 96px 0 84px; border-bottom: 1px solid var(--line); }
+    .hero-grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
+    .kicker { font-size: .8rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--faint); font-weight: 400; margin-bottom: 28px; }
+    .hero h1 { font-weight: 300; font-size: clamp(2.6rem, 6.5vw, 4.6rem); line-height: 1.02; letter-spacing: -0.03em; margin-bottom: 30px; }
+    .hero .lead { font-size: clamp(1.08rem, 1.7vw, 1.3rem); font-weight: 300; line-height: 1.6; color: var(--muted); max-width: 46ch; margin-bottom: 18px; }
+    .hero .lead:last-child { margin-bottom: 0; }
+    .hero-photo img {
+      width: 100%; border-radius: 4px; border: 1px solid var(--line); display: block;
     }
-    .hero-badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-    .hero h1 {
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 800; letter-spacing: -0.03em; line-height: 1.05;
-      margin-bottom: 20px;
-    }
-    .hero h1 .accent { color: var(--accent); }
-    .hero p.lead {
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      color: var(--text-dim); max-width: 620px; margin-bottom: 32px;
-    }
-    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 24px; border-radius: 12px; font-weight: 600; font-size: .98rem;
-      cursor: pointer; transition: transform .15s, box-shadow .2s, background .2s;
-    }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px var(--accent-soft); }
-    .btn-ghost { background: var(--card); border: 1px solid var(--border); color: var(--text); }
-    .btn-ghost:hover { border-color: var(--accent); }
-
-    /* ============================================================
-       SOBRE MÍ
-    ============================================================ */
-    .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: center; }
-    .about-photo {
-      aspect-ratio: 1; border-radius: 20px; overflow: hidden;
-      background: linear-gradient(135deg, var(--accent-soft), var(--card));
-      border: 1px solid var(--border);
-      display: grid; place-items: center; color: var(--text-dim); font-size: .9rem; text-align: center; padding: 20px;
-    }
-    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .about-text p { color: var(--text-dim); margin-bottom: 16px; }
-    .about-text strong { color: var(--text); }
-
-    /* ============================================================
-       EXPERIENCIA (timeline)
-    ============================================================ */
-    .timeline { display: flex; flex-direction: column; gap: 0; }
-    .job {
-      display: grid; grid-template-columns: 180px 1fr; gap: 28px;
-      padding: 28px 0; border-top: 1px solid var(--border);
-    }
-    .job:last-child { border-bottom: 1px solid var(--border); }
-    .job-date { color: var(--text-dim); font-size: .9rem; font-weight: 500; }
-    .job h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 2px; }
-    .job .company { color: var(--accent); font-weight: 600; font-size: .95rem; margin-bottom: 12px; }
-    .job ul { list-style: none; }
-    .job ul li { color: var(--text-dim); padding-left: 20px; position: relative; margin-bottom: 6px; }
-    .job ul li::before { content: "▹"; color: var(--accent); position: absolute; left: 0; }
-
-    /* ============================================================
-       PROYECTOS
-    ============================================================ */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
-    .project-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 28px;
-      transition: transform .2s, border-color .2s, box-shadow .2s;
-      display: flex; flex-direction: column;
-    }
-    .project-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--shadow); }
-    .project-icon {
-      width: 46px; height: 46px; border-radius: 12px; background: var(--accent-soft);
-      display: grid; place-items: center; font-size: 1.4rem; margin-bottom: 18px;
-    }
-    .project-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
-    .project-card p { color: var(--text-dim); font-size: .95rem; margin-bottom: 18px; flex: 1; }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-    .tag {
-      font-size: .78rem; font-weight: 600; color: var(--accent);
-      background: var(--accent-soft); padding: 4px 10px; border-radius: 6px;
-    }
-    .project-links { display: flex; gap: 16px; font-size: .9rem; font-weight: 600; }
-    .project-links a { color: var(--accent); }
-    .project-links a:hover { text-decoration: underline; }
-
-    /* ============================================================
-       HABILIDADES
-    ============================================================ */
-    .skills-label { font-size: 1rem; font-weight: 700; margin: 28px 0 14px; }
-    .skills-label:first-of-type { margin-top: 0; }
-    .cert-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-    .cert-list li {
-      display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px;
-      padding: 16px 20px; background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-    }
-    .cert-list a, .cert-list .cert-name { font-weight: 700; color: var(--text); }
-    .cert-list a { color: var(--accent); }
-    .cert-list a:hover { text-decoration: underline; }
-    .cert-list li > span:last-child { color: var(--text-dim); font-size: .9rem; }
-    .skill-list { list-style: none; columns: 2; column-gap: 48px; }
-    .skill-list.one-col { columns: 1; }
-    .skill-list li {
-      color: var(--text-dim); padding-left: 22px; position: relative;
-      margin-bottom: 10px; break-inside: avoid;
-    }
-    .skill-list li::before { content: "▹"; color: var(--accent); position: absolute; left: 0; }
-    .skill-list li strong { color: var(--text); font-weight: 600; }
-    @media (max-width: 620px) { .skill-list { columns: 1; } }
-
-    /* ============================================================
-       CONTACTO
-    ============================================================ */
-    .contact { text-align: center; }
-    .contact h2 { margin-bottom: 14px; }
-    .contact p { color: var(--text-dim); max-width: 480px; margin: 0 auto 32px; }
-    .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-    /* ============================================================
-       FOOTER
-    ============================================================ */
-    footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; color: var(--text-dim); font-size: .9rem; }
-
-    /* ============================================================
-       RESPONSIVE
-    ============================================================ */
-    @media (max-width: 760px) {
-      .nav-links { display: none; }
-      .nav-toggle { display: block; }
-      .about-grid { grid-template-columns: 1fr; }
-      .job { grid-template-columns: 1fr; gap: 8px; }
+    @media (min-width: 840px) {
+      .hero-grid { grid-template-columns: 1.5fr 0.9fr; gap: 64px; }
+      .hero-photo { max-width: 340px; justify-self: end; }
     }
 
-    /* Animación de entrada */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
+    .section { padding: 88px 0; border-bottom: 1px solid var(--line); }
+    .label { font-size: .78rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--faint); font-weight: 400; margin-bottom: 44px; }
+
+    /* work */
+    .work-item { padding: 52px 0; border-top: 1px solid var(--line); }
+    .work-item:first-of-type { border-top: none; padding-top: 0; }
+    .work-num { font-size: .8rem; letter-spacing: 0.18em; color: var(--faint); font-weight: 400; }
+    .work-title { font-weight: 300; font-size: clamp(1.9rem, 4.2vw, 3rem); line-height: 1.04; letter-spacing: -0.02em; margin: 10px 0 16px; }
+    .work-desc { font-size: 1.1rem; font-weight: 300; color: var(--muted); max-width: 60ch; margin-bottom: 22px; }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-bottom: 26px; }
+    .work-tags span { font-size: .8rem; letter-spacing: 0.06em; color: var(--faint); }
+    .work-links { display: flex; gap: 30px; flex-wrap: wrap; }
+    .work-links a { font-size: .95rem; font-weight: 400; border-bottom: 1px solid var(--text); padding-bottom: 3px; transition: opacity .2s; }
+    .work-links a:hover { opacity: .55; }
+
+    /* about */
+    .about-lead { font-size: clamp(1.3rem, 2.6vw, 1.9rem); font-weight: 300; line-height: 1.5; max-width: 46ch; letter-spacing: -0.01em; }
+    .about-lead strong { font-weight: 500; }
+
+    /* experience */
+    .xp { display: grid; grid-template-columns: 200px 1fr; gap: 8px 40px; padding: 26px 0; border-top: 1px solid var(--line); }
+    .xp:first-of-type { border-top: none; }
+    .xp .when { font-size: .9rem; color: var(--faint); font-weight: 400; }
+    .xp h3 { font-size: 1.35rem; font-weight: 400; letter-spacing: -0.01em; }
+    .xp .co { color: var(--muted); font-size: 1rem; margin-top: 2px; }
+    .xp-bullets { list-style: none; margin-top: 14px; }
+    .xp-bullets li { position: relative; padding-left: 18px; color: var(--muted); font-weight: 300; font-size: 1rem; line-height: 1.6; margin-bottom: 8px; }
+    .xp-bullets li::before { content: "·"; position: absolute; left: 2px; color: var(--faint); }
+    .xp-bullets strong { color: var(--text); font-weight: 500; }
+
+    /* cols (skills/langs/education) */
+    .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 48px; }
+    .cols h4 { font-size: .78rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--faint); font-weight: 400; margin-bottom: 18px; }
+    .cols ul { list-style: none; }
+    .cols li { font-size: 1.05rem; font-weight: 300; color: var(--text); padding: 7px 0; border-bottom: 1px solid var(--line); }
+    .cols li span { color: var(--faint); }
+
+    /* contact */
+    .contact h2 { font-weight: 300; font-size: clamp(2.2rem, 6vw, 4rem); letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 34px; }
+    .contact-links { display: flex; gap: 34px; flex-wrap: wrap; }
+    .contact-links a { font-size: 1.05rem; border-bottom: 1px solid var(--text); padding-bottom: 3px; }
+    .contact-links a:hover { opacity: .55; }
+
+    footer { padding: 44px 0; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--faint); font-size: .85rem; }
+
+    @media (max-width: 640px) { .xp { grid-template-columns: 1fr; gap: 2px; } }
   </style>
 </head>
 <body>
 
-  <!-- ============================ NAVBAR ============================ -->
   <header class="nav">
     <div class="wrap nav-inner">
-      <a href="#" class="logo">Leyre.</a>
-      <nav class="nav-links" id="navLinks">
-        <a href="#about">About</a>
+      <nav class="nav-links">
+        <a href="#work">Work</a>
         <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
-      <div style="display:flex; gap:10px; align-items:center;">
-        <button class="nav-toggle" id="navToggle">☰</button>
-      </div>
     </div>
   </header>
 
-  <!-- ============================ HERO ============================ -->
+  <!-- HERO -->
   <section class="hero">
-    <div class="wrap">
-      <h1>Hello, I am <span class="accent">Leyre</span>.<br>Product &amp; Operations Specialist.</h1>
-      <div class="cta-row">
-        <a href="#projects" class="btn btn-primary">View my work →</a>
-        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="kicker">Product &amp; Operations Specialist · Munich &amp; Zaragoza</p>
+        <h1>Hey, I am Leyre!</h1>
+        <p class="lead">
+          I am a Product Owner and Operations Specialist, passionate about creating products for real people. 5+ years
+          across IT operations in international organizations, where I have helped colleagues simplify their processes
+          and stakeholders build easier customer experiences.
+        </p>
+        <p class="lead">
+          I connect data and solutions, and leverage AI to increase results. Skilled in Jira, GitHub Copilot and
+          stakeholder management. Pragmatic, hands-on and data-driven.
+        </p>
+        <p class="lead">
+          When I am not working, you can find me lifting weights, cooking, or looking for the next interesting arbitrage
+          situation in the stocks markets.
+        </p>
+      </div>
+      <div class="hero-photo">
+        <img src="photo.webp" alt="Leyre" />
       </div>
     </div>
   </section>
 
-  <!-- ============================ SOBRE MÍ ============================ -->
-  <section id="about">
+  <!-- WORK -->
+  <section class="section" id="work">
     <div class="wrap">
-      <div class="about-grid reveal">
-        <div class="about-photo">
-          <img src="photo.webp" alt="Leyre" onerror="this.style.display='none'; this.parentNode.innerHTML='Save your photo as photo.webp in this folder';">
-        </div>
-        <div class="about-text">
-          <h2 class="section-title">About me</h2>
-          <p>
-            <strong>5+ years</strong> across IT operations and product, currently building
-            <strong>LLM automation</strong> at BMW Group.
-          </p>
-          <p>
-            I design and ship <strong>Python pipelines and AI agents</strong> that replace manual work
-            with measurable results.
-          </p>
-          <p>
-            Skilled in Jira, GitHub Copilot, stakeholder management. Pragmatic, hands-on and
-            data-driven mindset.
-          </p>
-        </div>
+      <p class="label">Selected work</p>
+
+      <div class="work-item">
+        <div class="work-num">01</div>
+        <h2 class="work-title">CAB Briefing Automation</h2>
+        <p class="work-desc">Agentic automation for the Global Change Advisory Board briefing, created with GitHub Copilot. Removes up to 4h/week of manual work with a human approver in the loop.</p>
+        <div class="work-tags"><span>GitHub Copilot</span><span>ServiceNow</span><span>Agentic AI</span><span>Professional project</span></div>
+        <div class="work-links"><a href="cab-automation.html">Read case study</a></div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-num">02</div>
+        <h2 class="work-title">SRE Operations Analytics</h2>
+        <p class="work-desc">A daily-refreshed analytics layer that made SRE business impact visible again after a ServiceNow migration. Self-service for 40+ users across three roles.</p>
+        <div class="work-tags"><span>AWS Athena</span><span>QuickSight</span><span>SQL</span><span>Metric design</span><span>Professional project</span></div>
+        <div class="work-links"><a href="sre-analytics.html">Read case study</a></div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-num">03</div>
+        <h2 class="work-title">Corporate Actions Scanner</h2>
+        <p class="work-desc">A serverless tool that scans SEC and German regulators daily for special-situation deals, calculates the arbitrage spread, and publishes a free dashboard, with an LLM agent for deep-dive memos.</p>
+        <div class="work-tags"><span>Python</span><span>LangGraph</span><span>LLM agent</span><span>Personal project</span></div>
+        <div class="work-links"><a href="corp-actions-scanner.html">Read case study</a><a href="https://leyremt.github.io/corp-actions-scanner/" target="_blank" rel="noopener">Live tool ↗</a></div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-num">04</div>
+        <h2 class="work-title">Solo Inversiones</h2>
+        <p class="work-desc">A personal LLM bot that reads an investing group chat, extracts every company mentioned, prices it, and publishes a self-deploying watchlist for a few cents a month.</p>
+        <div class="work-tags"><span>Python</span><span>Serverless</span><span>Personal project</span></div>
+        <div class="work-links"><a href="solo-inversiones.html">Read case study</a><a href="https://leyremt.github.io/solo-inversiones/" target="_blank" rel="noopener">Live tool ↗</a></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================ EXPERIENCIA ============================ -->
-  <section id="experience" style="background: var(--bg-soft);">
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
     <div class="wrap">
-      <h2 class="section-title">Experience</h2>
-
-      <div class="timeline reveal">
-        <div class="job">
-          <div class="job-date">Feb 2024 — Present<br>Munich</div>
-          <div>
-            <h3>Agile Operations Specialist, IT-Operations</h3>
-            <div class="company">BMW Group</div>
-            <ul>
-              <li>Designed and built an <strong>LLM agent</strong> that automates the Change Advisory Board review agenda, removing up to 4h/week of manual checks (Python, GitHub Copilot, VS Code).</li>
-              <li>Built management reporting (process + tooling) to give the SRE teams metric-driven visibility and cutting monthly incident report compilation from 8h to 1h, using AWS tools.</li>
-              <li>Built an automated Excel tool to fill data gaps from datasets with minimal user intervention to track application availability, based on the <strong>error budget</strong> concept.</li>
-              <li>Planned, facilitated and followed up on <strong>agile events</strong> (Scrum), as well as online sessions with 100+ participants and <strong>cross-functional collaboration</strong>.</li>
-              <li>Drove <strong>continuous improvement initiatives</strong> to increase efficiency in communication flows and stakeholder visibility to reduce overall MTTR in the plants worldwide. Also built cross-team relationships to accelerate impediment resolution.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="job-date">Sep 2022 — Nov 2023<br>Munich</div>
-          <div>
-            <h3>Product Owner, E-Commerce</h3>
-            <div class="company">Slash.Digital GmbH</div>
-            <ul>
-              <li>Owned the end-to-end e-commerce customer journey and usability optimization across 5 storefronts, lifting average order value by 5%.</li>
-              <li>Led a <strong>cross-functional Scrum team</strong> (5 external developers, 2 designers, other POs), shipping 4 releases on a 3-week cadence.</li>
-              <li>Owned the product backlog for customer-journey issues (epics, user stories, acceptance criteria, sprint planning), prioritizing customer input and keeping delivery predictable and in scope.</li>
-              <li>Developed <strong>documentation, project guides and best practices</strong> in Confluence to improve team efficiency and knowledge sharing.</li>
-              <li>Conducted <strong>feature testing</strong> to guarantee product quality and usability.</li>
-              <li>Member of the internal Jira &amp; Confluence training focus group.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="job-date">Oct 2021 — Aug 2022<br>Munich</div>
-          <div>
-            <h3>Trainee Consultant, Customer Insights</h3>
-            <div class="company">Slash.Digital GmbH</div>
-            <ul>
-              <li>Conducted <strong>qualitative data analysis</strong> to generate target-group insights and develop <strong>data-driven marketing strategies</strong> (Python, R).</li>
-              <li>Applied <strong>neuromarketing principles</strong> to internal projects to better understand customer behavior and optimize communication approaches.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="job-date">Jan 2019 — Sep 2021<br>Unterhaching</div>
-          <div>
-            <h3>Translation Account Manager</h3>
-            <div class="company">Leinhäuser Language Services GmbH</div>
-            <ul>
-              <li>Managed complex translation projects for blue-chip aviation and tech clients as primary point of contact between enterprise stakeholders and delivery teams, translating client needs into clear scope and on-time delivery.</li>
-              <li>Owned client relationships end-to-end, aligning expectations with business objectives.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="job-date">Aug 2017 — Nov 2018<br>Tirol</div>
-          <div>
-            <h3>Support Engineer</h3>
-            <div class="company">Swarovski KG</div>
-            <ul>
-              <li>Resolved 1st-level support across Windows, Mac and SAP environments.</li>
-              <li>Managed ticketing, documentation and escalation workflows.</li>
-            </ul>
-          </div>
+      <p class="label">Experience</p>
+      <div class="xp">
+        <div class="when">Feb 2024 — Present</div>
+        <div>
+          <h3>Agile Operations Specialist, IT-Operations</h3>
+          <div class="co">BMW Group · Munich</div>
+          <ul class="xp-bullets">
+            <li>Designed and built an <strong>LLM agent</strong> that automates the Change Advisory Board review agenda, removing up to 4h/week of manual checks (Python, GitHub Copilot, VS Code).</li>
+            <li>Built management reporting (process + tooling) to give the SRE teams metric-driven visibility and cutting monthly incident report compilation from 8h to 1h, using AWS tools.</li>
+            <li>Built an automated Excel tool to fill data gaps from datasets with minimal user intervention to track application availability, based on the <strong>error budget</strong> concept.</li>
+            <li>Planned, facilitated and followed up on <strong>agile events</strong> (Scrum), as well as online sessions with 100+ participants and <strong>cross-functional collaboration</strong>.</li>
+            <li>Drove <strong>continuous improvement initiatives</strong> to increase efficiency in communication flows and stakeholder visibility to reduce overall MTTR in the plants worldwide. Also built cross-team relationships to accelerate impediment resolution.</li>
+          </ul>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ============================ PROJECTS ============================ -->
-  <section id="projects">
-    <div class="wrap">
-      <h2 class="section-title">Featured projects</h2>
-
-      <div class="projects-grid reveal">
-        <div class="project-card">
-          <h3>CAB Briefing Automation</h3>
-          <p>Agentic for automatic Global Change Advisory Board briefing created with GitHub Copilot.</p>
-          <div class="tags">
-            <span class="tag">GitHub Copilot</span>
-            <span class="tag">ServiceNow</span>
-            <span class="tag">Agentic AI system</span>
-            <span class="tag">Professional project</span>
-          </div>
-          <div class="project-links">
-            <a href="cab-automation.html">Read case study →</a>
-          </div>
+      <div class="xp">
+        <div class="when">Sep 2022 — Nov 2023</div>
+        <div>
+          <h3>Product Owner, E-Commerce</h3>
+          <div class="co">Slash.Digital GmbH · Munich</div>
+          <ul class="xp-bullets">
+            <li>Owned the end-to-end e-commerce customer journey and usability optimization across 5 storefronts, lifting average order value by 5%.</li>
+            <li>Led a <strong>cross-functional Scrum team</strong> (5 external developers, 2 designers, other POs), shipping 4 releases on a 3-week cadence.</li>
+            <li>Owned the product backlog for customer-journey issues (epics, user stories, acceptance criteria, sprint planning), prioritizing customer input and keeping delivery predictable and in scope.</li>
+            <li>Developed <strong>documentation, project guides and best practices</strong> in Confluence to improve team efficiency and knowledge sharing.</li>
+            <li>Conducted <strong>feature testing</strong> to guarantee product quality and usability.</li>
+            <li>Member of the internal Jira &amp; Confluence training focus group.</li>
+          </ul>
         </div>
-
-        <div class="project-card">
-          <h3>SRE Operations Analytics</h3>
-          <p>Daily-refreshed dashboard that made SRE business impact visible after a ServiceNow migration — AWS Athena + QuickSight, self-service for 40+ users.</p>
-          <div class="tags">
-            <span class="tag">AWS</span>
-            <span class="tag">Reporting</span>
-            <span class="tag">SRE</span>
-            <span class="tag">SQL</span>
-            <span class="tag">Professional project</span>
-          </div>
-          <div class="project-links">
-            <a href="sre-analytics.html">Read case study →</a>
-          </div>
+      </div>
+      <div class="xp">
+        <div class="when">Oct 2021 — Aug 2022</div>
+        <div>
+          <h3>Trainee Consultant, Customer Insights</h3>
+          <div class="co">Slash.Digital GmbH · Munich</div>
+          <ul class="xp-bullets">
+            <li>Conducted <strong>qualitative data analysis</strong> to generate target-group insights and develop <strong>data-driven marketing strategies</strong> (Python, R).</li>
+            <li>Applied <strong>neuromarketing principles</strong> to internal projects to better understand customer behavior and optimize communication approaches.</li>
+          </ul>
         </div>
-
-        <div class="project-card">
-          <h3>Solo Inversiones</h3>
-          <p>A personal LLM bot that reads our investing group chat, extracts every company mentioned, prices it, and publishes a self-deploying watchlist — for a few cents a month.</p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Anthropic API</span>
-            <span class="tag">GitHub Actions</span>
-            <span class="tag">Netlify</span>
-            <span class="tag">Personal project</span>
-          </div>
-          <div class="project-links">
-            <a href="solo-inversiones.html">Read case study →</a>
-            <a href="https://leyremt.github.io/solo-inversiones/" target="_blank" rel="noopener">Live tool ↗</a>
-          </div>
+      </div>
+      <div class="xp">
+        <div class="when">Jan 2019 — Sep 2021</div>
+        <div>
+          <h3>Translation Account Manager</h3>
+          <div class="co">Leinhäuser Language Services · Unterhaching</div>
+          <ul class="xp-bullets">
+            <li>Managed complex translation projects for blue-chip aviation and tech clients as primary point of contact between enterprise stakeholders and delivery teams, translating client needs into clear scope and on-time delivery.</li>
+            <li>Owned client relationships end-to-end, aligning expectations with business objectives.</li>
+          </ul>
         </div>
-
-        <div class="project-card">
-          <h3>Corporate Actions Scanner</h3>
-          <p>A serverless tool that scans SEC and German regulators daily for special-situation deals, calculates the arbitrage spread, and publishes a free dashboard, with an LLM agent for deep-dive memos.</p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">LangGraph</span>
-            <span class="tag">LLM agent</span>
-            <span class="tag">GitHub Actions</span>
-            <span class="tag">Personal project</span>
-          </div>
-          <div class="project-links">
-            <a href="corp-actions-scanner.html">Read case study →</a>
-            <a href="https://leyremt.github.io/corp-actions-scanner/" target="_blank" rel="noopener">Live tool ↗</a>
-          </div>
+      </div>
+      <div class="xp">
+        <div class="when">Aug 2017 — Nov 2018</div>
+        <div>
+          <h3>Support Engineer</h3>
+          <div class="co">Swarovski KG · Tirol</div>
+          <ul class="xp-bullets">
+            <li>Resolved 1st-level support across Windows, Mac and SAP environments.</li>
+            <li>Managed ticketing, documentation and escalation workflows.</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================ EDUCATION ============================ -->
-  <section id="education" style="background: var(--bg-soft);">
+  <!-- EDUCATION -->
+  <section class="section">
     <div class="wrap">
-      <h2 class="section-title">Education</h2>
-
-      <div class="timeline reveal">
-        <div class="job">
-          <div class="job-date">Ongoing</div>
-          <div>
-            <h3>MA Applied AI &amp; Process Optimization <span style="color:var(--text-dim); font-weight:500;">(30 ECTS)</span></h3>
-            <div class="company">UTAMED</div>
-          </div>
+      <p class="label">Education &amp; certifications</p>
+      <div class="cols">
+        <div>
+          <h4>Education</h4>
+          <ul>
+            <li>MA Applied AI &amp; Process Optimization <span>· UTAMED, ongoing</span></li>
+            <li>BSc Business Administration <span>· UOC, 2024</span></li>
+            <li>MA Legal Translation <span>· Alicante, 2017</span></li>
+            <li>BA Translation Studies <span>· Innsbruck, 2016</span></li>
+          </ul>
         </div>
-
-        <div class="job">
-          <div class="job-date">2024</div>
-          <div>
-            <h3>BSc Business Administration <span style="color:var(--text-dim); font-weight:500;">(240 ECTS)</span></h3>
-            <div class="company">Open University of Catalonia</div>
-            <ul>
-              <li>Focus on agile methodologies, statistics (Python, R) and Business Intelligence.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="job-date">2017</div>
-          <div>
-            <h3>MA Legal Translation <span style="color:var(--text-dim); font-weight:500;">(60 ECTS)</span></h3>
-            <div class="company">University of Alicante</div>
-          </div>
-        </div>
-
-        <div class="job">
-          <div class="job-date">2016</div>
-          <div>
-            <h3>BA Translation Studies <span style="color:var(--text-dim); font-weight:500;">(180 ECTS)</span></h3>
-            <div class="company">University of Innsbruck</div>
-          </div>
+        <div>
+          <h4>Certifications</h4>
+          <ul>
+            <li>Professional Scrum Master I <span>· Scrum.org</span></li>
+            <li>Professional Scrum Product Owner I <span>· Scrum.org</span></li>
+            <li>Google Analytics 4 <span>· 121WATT</span></li>
+          </ul>
         </div>
       </div>
-
-      <h3 class="skills-label" style="margin-top:48px;">Certifications</h3>
-      <ul class="cert-list reveal">
-        <li>
-          <a href="https://www.credly.com/earner/earned/badge/93124f03-4f0f-40d6-9430-85da8c6c6777" target="_blank">Professional Scrum Master™ I (PSM I) ↗</a>
-          <span>Scrum.org · Feb 2026</span>
-        </li>
-        <li>
-          <a href="https://www.credly.com/earner/earned/badge/eec0eb5f-1207-4634-9c5e-201195fce09e" target="_blank">Professional Scrum Product Owner™ I (PSPO I) ↗</a>
-          <span>Scrum.org · Sep 2023</span>
-        </li>
-        <li>
-          <span class="cert-name">Google Analytics 4 Seminar</span>
-          <span>121WATT School for Digital · Jun 2022</span>
-        </li>
-      </ul>
     </div>
   </section>
 
-  <!-- ============================ HABILIDADES ============================ -->
-  <section id="skills">
+  <!-- SKILLS / LANGUAGES -->
+  <section class="section">
     <div class="wrap">
-      <h2 class="section-title">Skills</h2>
-
-      <h3 class="skills-label">Hard skills</h3>
-      <ul class="skill-list reveal">
-        <li>GitHub Copilot</li>
-        <li>Jira / Confluence</li>
-        <li>Scrum / Agile</li>
-        <li>Microsoft 365</li>
-        <li>AWS QuickSight</li>
-        <li>SQL</li>
-        <li>Magento</li>
-        <li>Python</li>
-        <li>R</li>
-      </ul>
-
-      <h3 class="skills-label">Soft skills</h3>
-      <ul class="skill-list reveal">
-        <li>Communication</li>
-        <li>Relationship building</li>
-        <li>Accountable</li>
-        <li>Team player</li>
-        <li>Problem-solving mindset</li>
-        <li>Organized</li>
-      </ul>
-
-      <h3 class="skills-label">Languages</h3>
-      <ul class="skill-list reveal">
-        <li><strong>Spanish</strong> — Native</li>
-        <li><strong>German</strong> — C1</li>
-        <li><strong>English</strong> — C1</li>
-        <li><strong>Russian</strong> — B1</li>
-      </ul>
-
-      <h3 class="skills-label">Interests</h3>
-      <ul class="skill-list one-col reveal">
-        <li>Stock market &amp; investing</li>
-        <li>Weightlifting</li>
-        <li>Cooking</li>
-      </ul>
+      <p class="label">Skills &amp; languages</p>
+      <div class="cols">
+        <div>
+          <h4>Hard skills</h4>
+          <ul><li>GitHub Copilot</li><li>SQL</li><li>Jira / Confluence</li><li>Scrum / Agile</li><li>AWS (Athena, QuickSight)</li><li>M365 (Excel, PowerPoint)</li><li>n8n</li><li>ServiceNow</li></ul>
+        </div>
+        <div>
+          <h4>Soft skills</h4>
+          <ul><li>Communication</li><li>Stakeholder management</li><li>Problem-solving mindset</li><li>Team player</li><li>Organized</li><li>Pragmatic</li><li>Data-driven</li></ul>
+        </div>
+        <div>
+          <h4>Languages</h4>
+          <ul><li>Spanish <span>· Native</span></li><li>German <span>· C1</span></li><li>English <span>· C1</span></li><li>Russian <span>· B1</span></li></ul>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============================ CONTACTO ============================ -->
-  <section id="contact" class="contact">
-    <div class="wrap reveal">
-      <h2 class="section-title">Let us talk</h2>
-      <p>Have an interesting opportunity or want to know more about my work? I am based in Munich, Germany and I would love to hear from you.</p>
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <p class="label">Contact</p>
+      <h2>Let us talk.</h2>
       <div class="contact-links">
-        <a href="mailto:leyremorales@gmail.com" class="btn btn-primary">✉️ leyremorales@gmail.com</a>
-        <a href="https://www.linkedin.com/in/leyremt" target="_blank" class="btn btn-ghost">LinkedIn</a>
-        <a href="https://github.com/leyremt" target="_blank" class="btn btn-ghost">GitHub</a>
+        <a href="mailto:leyremorales@gmail.com">leyremorales@gmail.com</a>
+        <a href="https://www.linkedin.com/in/leyremt" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/leyremt" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </section>
 
-  <!-- ============================ FOOTER ============================ -->
   <footer>
     <div class="wrap">
-      © <span id="year"></span> Leyre. Built with care.
+      <span>© <span id="y"></span> Leyre</span>
+      <span>Munich &amp; Zaragoza</span>
     </div>
   </footer>
-
-  <script>
-    /* ===== Menú móvil ===== */
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-    navToggle.addEventListener('click', () => {
-      const open = navLinks.style.display === 'flex';
-      navLinks.style.display = open ? 'none' : 'flex';
-      if (!open) {
-        navLinks.style.position = 'absolute';
-        navLinks.style.flexDirection = 'column';
-        navLinks.style.top = '64px'; navLinks.style.right = '24px';
-        navLinks.style.background = 'var(--card)';
-        navLinks.style.padding = '16px 24px';
-        navLinks.style.borderRadius = '12px';
-        navLinks.style.border = '1px solid var(--border)';
-      }
-    });
-
-    /* ===== Año automático ===== */
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    /* ===== Animación al hacer scroll ===== */
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  </script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
